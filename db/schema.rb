@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 20161018203601) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
+
+ActiveRecord::Schema.define(version: 20161030055554) do
+
+  create_table "groups", force: :cascade do |t|
+    t.text     "name"
+    t.text     "description"
+    t.text     "group_members"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
