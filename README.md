@@ -25,3 +25,6 @@ HTML, CSS, Javascript, Ruby on Rails
 - Sync with Facebook events if possible? Or be able to automatically pull in events from the area
 - ChatBox to be able to discuss
 - Events: Event planner with optimal times to host event, Events sorted by certain factors (e.g. number of people available, etc.)
+
+
+WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
