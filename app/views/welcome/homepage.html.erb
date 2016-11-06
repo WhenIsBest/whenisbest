@@ -11,8 +11,23 @@
     
     <%= link_to 'Create new group', new_group_path %>
     
-    <h1>Listing groups</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Group members</th>
+      </tr>
 
-
+      <% @groups.each do |group| %>
+        <tr>
+            <td><%= link_to group.name, group_path(group) %></td>
+            <td><%= group.description %></td>
+            <td><%= link_to 'Edit', edit_group_path(group) %></td>
+          <td><%= button_to 'Destroy', group_path(group),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' }%></td>
+        </tr>
+      <% end %>
+    </table>
 
 </body>
