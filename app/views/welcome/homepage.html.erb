@@ -1,35 +1,50 @@
-
-<body bgcolor="#E6E6FA">
+<body>
     
-    <h1 style="color:blue;font-size:300%;text-align:center">WhenIsBest</h1>
-
-    <p align="center">
-    <button >Add to calendar</button>
-    </p>
-
-    <div>
-        <h2 style="color:blue">Your Groups</h2>
+    <div class="header">
+        <h1>WhenIsBest</h1>
+        <p align="center">
+            <button >Add to calendar</button>
+        </p>
     </div>
     
-    <%= link_to 'Create new group', new_group_path %>
-    <div style="width:330px;height:550px;line-height:3em;overflow:scroll;padding:5px;background-color:#FCFADD;color:#714D03;border:4px double #DEBB07;">
-    <table>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Group members</th>
-      </tr>
+    
+    <div class="body">
+        
+        <div class="sidebar">
 
-      <% @groups.each do |group| %>
-        <tr>
-            <td><%= link_to group.name, group_path(group) %></td>
-            <td><%= group.description %></td>
-            <td><%= link_to 'Edit', edit_group_path(group) %></td>
-          <td><%= button_to 'Destroy', group_path(group),
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' }%></td>
-        </tr>
-      <% end %>
-    </table>
+            <div class="groups">
+                <h2>Your Groups</h2>
+                <button><%= link_to 'Create new group', new_group_path %></button>
+            </div>
+
+            <div class="group-list">
+                <table>
+                  <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                  </tr>
+
+                  <% @groups.each do |group| %>
+                    <tr>
+                        <td><%= link_to group.name, group_path(group) %></td>
+                        <td><%= group.description %></td>
+                        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+                      <td><%= button_to 'Destroy', group_path(group),
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' }%></td>
+                    </tr>
+                  <% end %>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="calendar">
+            <p>This is where the calendar should be.</p>
+        </div>
+        
     </div>
+
+
+    
 </body>

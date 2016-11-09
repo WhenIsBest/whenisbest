@@ -3,9 +3,56 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 h1 {
-    color: darkblue;
+    color: crimson;
+    color:blue;
+    font-size:300%;
+    text-align: center;
+}
+
+h2 {
+    color:blue;
+}
+
+.header {
+    background-color: white;
+    width: 100%;
+    margin: 0px auto;
+    position: fixed;
+    top: 0px;
+    left: 0px;
 }
 
 body {
-    background-color: aliceblue;
+    background-color: darkgrey;
+    margin-top: 180px;
+}
+
+.sidebar {
+    width: 370px;
+    background-color: azure;
+    float: left;
+}
+
+.groups {
+    background-color: white;
+    width: 340px;
+}
+
+.group-list {
+    font-family: serif;
+    width:330px;
+    height:550px;
+    line-height:3em;
+    overflow: scroll;
+    padding:5px;
+    background-color: white;
+    color: darkgray;
+}
+
+.calendar {
+    width: 1100px;
+    height: 600px;
+    background-color: white;
+    float: right;
+    margin: 0px;
 }
