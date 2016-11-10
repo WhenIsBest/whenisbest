@@ -2,11 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1 {
-    color: crimson;
-    color:blue;
-    font-size:300%;
-    text-align: center;
+body {
+    font-family: sans-serif;
+    background-color: #f7f7f7;
 }
 
 h2 {
@@ -20,33 +18,57 @@ h2 {
     position: fixed;
     top: 0px;
     left: 0px;
+    box-shadow: 1px 1px 1px #888888;
+    
+    h3 {
+        color: darkblue;
+        padding: 0px;
+        margin-top: 7px;
+        margin-left: 7px;
+        margin-bottom: 0px;
+    }
+    
+    p {
+        padding: 0px;
+        margin-top: 5px;
+        margin-left: 7px;
+        margin-bottom: 4px;
+        font-size: 15px;
+    }
+    
+    button {
+        margin-left: 7px;
+        margin-bottom: 7px;
+    }
 }
 
-body {
-    background-color: darkgrey;
-    margin-top: 180px;
+.body {
+    margin-top: 100px;
 }
 
 .sidebar {
     width: 370px;
     background-color: azure;
     float: left;
-}
+    left: 0px;
+    padding: 0px;
 
-.groups {
-    background-color: white;
-    width: 340px;
-}
+    .groups {
+        background-color: white;
+        width: 100%;
+        top: 0px;
+    }
 
-.group-list {
-    font-family: serif;
-    width:330px;
-    height:550px;
-    line-height:3em;
-    overflow: scroll;
-    padding:5px;
-    background-color: white;
-    color: darkgray;
+    .group-list {
+        font-family: serif;
+        width:100%;
+        height:550px;
+        line-height:3em;
+        overflow: scroll;
+        padding:5px;
+        background-color: white;
+        color: darkgray;
+    }
 }
 
 .calendar {
