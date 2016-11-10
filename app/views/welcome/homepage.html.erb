@@ -1,36 +1,31 @@
 <body>
     
     <div class="header">
-        <h3>WhenIsBest</h3>
+        <h2>WhenIsBest</h2>
         <p>Hello, <%= @user.first_name %>! This is what your schedule looks like this week.</p>
         <button >Add to calendar</button>
     </div>
     
     
-    <div class="body">
+    <div class="content">
         
         <div class="sidebar">
 
             <div class="groups">
-                <h2>Your Groups</h2>
+                <h3>Your Groups</h3>
                 <button><%= link_to 'Create new group', new_group_path %></button>
             </div>
 
             <div class="group-list">
                 <table>
-                  <tr>
-                    <th>Name</th>
-                    <th>Description</th>
-                  </tr>
-
                   <% @groups.each do |group| %>
                     <tr>
-                        <td><%= link_to group.name, group_path(group) %></td>
-                        <td><%= group.description %></td>
-                        <td><%= link_to 'Edit', edit_group_path(group) %></td>
-                      <td><%= button_to 'Destroy', group_path(group),
-                              method: :delete,
-                              data: { confirm: 'Are you sure?' }%></td>
+                        <td>
+                            <div id="group-item">
+                                <h4><%= link_to group.name, group_path(group) %></h4>
+                                <p><%= group.description %></p>
+                            </div>
+                        </td>
                     </tr>
                   <% end %>
                 </table>

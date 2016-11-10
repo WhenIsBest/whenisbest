@@ -7,10 +7,6 @@ body {
     background-color: #f7f7f7;
 }
 
-h2 {
-    color:blue;
-}
-
 .header {
     background-color: white;
     width: 100%;
@@ -20,7 +16,7 @@ h2 {
     left: 0px;
     box-shadow: 1px 1px 1px #888888;
     
-    h3 {
+    h2 {
         color: darkblue;
         padding: 0px;
         margin-top: 7px;
@@ -42,7 +38,7 @@ h2 {
     }
 }
 
-.body {
+.content {
     margin-top: 100px;
 }
 
@@ -51,29 +47,61 @@ h2 {
     background-color: azure;
     float: left;
     left: 0px;
-    padding: 0px;
-
+    padding-top: 0px;
+    
     .groups {
-        background-color: white;
+        background-color: darkcyan;
         width: 100%;
-        top: 0px;
+        top: 0px; 
+        padding: 7px;
+        padding-top: 3px;
+        padding-right: 0px;
+        box-shadow: 1px 1px 1px #888888;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        
+        h3 {
+            color: white;
+        }
     }
 
     .group-list {
-        font-family: serif;
-        width:100%;
-        height:550px;
-        line-height:3em;
+        width: 100%;
+        height: 550px;
+        line-height: 3em;
         overflow: scroll;
-        padding:5px;
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 4px;
         background-color: white;
         color: darkgray;
+        
+        #group-item {
+            width: 340px;
+            border-bottom: thin solid darkgrey;
+            margin: 0px;
+            padding-left: 7px;
+            
+            h4 {
+                padding: 0px;
+                margin: 0px;
+            }
+            
+            p {
+                padding: 0px;
+                margin: 0px;
+            }
+        }
+        
+        #group-item:hover {
+            background-color: darkorange;  
+        }
     }
 }
 
 .calendar {
-    width: 1100px;
-    height: 600px;
+    width: 1200px;
+    height: 650px;
     background-color: white;
     float: right;
     margin: 0px;
