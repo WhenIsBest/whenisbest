@@ -2,10 +2,107 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-h1 {
-    color: darkblue;
+body {
+    font-family: sans-serif;
+    background-color: #f7f7f7;
 }
 
-body {
-    background-color: aliceblue;
+.header {
+    background-color: white;
+    width: 100%;
+    margin: 0px auto;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    box-shadow: 1px 1px 1px #888888;
+    
+    h2 {
+        color: darkblue;
+        padding: 0px;
+        margin-top: 7px;
+        margin-left: 7px;
+        margin-bottom: 0px;
+    }
+    
+    p {
+        padding: 0px;
+        margin-top: 5px;
+        margin-left: 7px;
+        margin-bottom: 4px;
+        font-size: 15px;
+    }
+    
+    button {
+        margin-left: 7px;
+        margin-bottom: 7px;
+    }
+}
+
+.content {
+    margin-top: 100px;
+}
+
+.sidebar {
+    width: 370px;
+    background-color: azure;
+    float: left;
+    left: 0px;
+    padding-top: 0px;
+    
+    .groups {
+        background-color: darkcyan;
+        width: 100%;
+        top: 0px; 
+        padding: 7px;
+        padding-top: 3px;
+        padding-right: 0px;
+        box-shadow: 1px 1px 1px #888888;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        
+        h3 {
+            color: white;
+        }
+    }
+
+    .group-list {
+        width: 100%;
+        height: 550px;
+        line-height: 3em;
+        overflow: scroll;
+        padding: 0px;
+        padding-left: 5px;
+        padding-right: 4px;
+        background-color: white;
+        color: darkgray;
+        
+        #group-item {
+            width: 340px;
+            border-bottom: thin solid darkgrey;
+            margin: 0px;
+            padding-left: 7px;
+            
+            h4 {
+                padding: 0px;
+                margin: 0px;
+            }
+            
+            p {
+                padding: 0px;
+                margin: 0px;
+            }
+        }
+        
+        #group-item:hover {
+            background-color: darkorange;  
+        }
+    }
+}
+
+.calendar {
+    width: 1200px;
+    height: 650px;
+    background-color: white;
+    float: right;
+    margin: 0px;
 }
