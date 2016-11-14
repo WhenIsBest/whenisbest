@@ -34,9 +34,12 @@
         </div>
 
         <div class="calendar">
-            <p>This is where the calendar should be.</p>
+            <h3>Your Calendar</h3>
         </div>
         
+        <%= week_calendar do |date| %>
+          <%= date %>
+        <% end %>
     </div>
     
 </body>
