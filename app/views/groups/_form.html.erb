@@ -26,7 +26,7 @@
  
   <p>
     <%= f.label :group_members %><br>
-    <%= f.text_area :group_members %>
+      <%= collection_select(:group, :group_members, User.all, :first_name, :email) %>
   </p>
 
   <p>
