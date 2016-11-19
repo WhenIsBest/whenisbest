@@ -23,6 +23,9 @@ ActiveRecord::Schema.define(version: 20161119035103) do
     t.string   "location"
     t.integer  "priority"
     t.string   "date"
+    t.string   "month"
+    t.string   "day"
+    t.string   "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -11,6 +11,9 @@ class CreateCalendarEvents < ActiveRecord::Migration[5.0]
       t.string :location
       t.integer :priority
       t.string :date
+      t.string :month
+      t.string :day
+      t.string :year
       
 
       t.timestamps

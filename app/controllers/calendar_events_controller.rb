@@ -17,9 +17,8 @@ class CalendarEventsController < ApplicationController
     end
     
     def create
-      calendar_event_params[:host] = current_user      
       @calendar_event = CalendarEvent.new(calendar_event_params)
-        
+      @calendar_event.host = current_user
       puts calendar_event_params
       
       year = calendar_event_params["date(1i)"]
@@ -28,9 +27,16 @@ class CalendarEventsController < ApplicationController
         
       months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"}
         
-      month = months[month.to_i]
+      @calendar_event.month = months[month.to_i]
+      @calendar_event.day = day
+      @calendar_event.year = year 
+        
+      @calendar_event.hour = calendar_event_params["hour"]
+      @calendar_event.minutes = calendar_event_params["minutes"]
+      @calendar_event.meridiem = calendar_event_params["meridiem"]
+        
+      @calendar_event.date = "#{@calendar_event.month} #{@calendar_event.day}, #{@calendar_event.year}"
       
-      @calendar_event.date = "#{month} #{day}, #{year}"
       if @calendar_event.save!
         redirect_to @calendar_event
       else
