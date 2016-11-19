@@ -1,0 +1,38 @@
+<%= form_for @calendar_event do |f| %>
+ 
+  <% if @calendar_event.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@calendar_event.errors.count, "error") %> prohibited
+        this calendar_event from being saved:
+      </h2>
+      <ul>
+        <% @calendar_event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p> <%= f.label "Name of event:" %><br>
+      <%= f.text_field :name %>
+  </p>
+
+  <p>
+      <%= f.label "Date:" %><br>
+      <%= f.date_select :date, :default => Time.now%>
+  </p>
+ 
+  <p>
+    <%= f.label "Time:"%><br>
+    <%= f.select :hour, ['12','1','2','3','4','5','6','7','8','9','10','11'] %>
+
+    <%= f.select :minutes, ["00","15","30","45"]%>
+
+    <%= f.select :meridiem, ["AM","PM"]%></p>
+
+  <p>
+    <%= f.submit "Create Event"%>
+  </p>
+ 
+<% end %>
