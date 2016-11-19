@@ -34,7 +34,7 @@ class CalendarEventsController < ApplicationController
       @calendar_event.hour = calendar_event_params["hour"]
       @calendar_event.minutes = calendar_event_params["minutes"]
       @calendar_event.meridiem = calendar_event_params["meridiem"]
-        
+                
       @calendar_event.date = "#{@calendar_event.month} #{@calendar_event.day}, #{@calendar_event.year}"
       
       if @calendar_event.save!
