@@ -11,7 +11,7 @@
     <tr>
       <td><%= calendar_event.name %></td>
       <td><%= calendar_event.date %></td>  
-      <td><%= calendar_event.hour %> <%= ":" %> <%= calendar_event.minutes %> <%= calendar_event.meridiem %></td>
+      <td><%= calendar_event.hour %>:<%= calendar_event.minutes %> <%= calendar_event.meridiem %></td>
       <td><%= link_to 'Show', calendar_event_path(calendar_event) %></td>
       <td><%= link_to 'Edit', edit_calendar_event_path(calendar_event) %></td>
       <td><%= button_to 'Destroy', calendar_event_path(calendar_event),

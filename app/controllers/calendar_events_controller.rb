@@ -60,10 +60,32 @@ class CalendarEventsController < ApplicationController
 
       redirect_to calendar_events_path
     end
+=begin
+    <% CalendarEvent.where(host: current_user.email).find_each do |event| %>
+                  <% if day.day.to_i == event.day.to_i  %> 
+                    <% if event.meridiem == "AM" %>
+                      <% if i+8 == event.hour.to_i %>
+                        <td><%= event.name %></td>
+                        <% flag = true %>
+                      <% end %>
+                    <% eelsif event.meridiem == "PM" && event.hour == "12"%>
+                      <% if i+8 == event.hour.to_i %>
+                        <td><%= event.name %></td>
+                        <% flag = true %>
+                      <% end %>
+                    <% else %>
+                      <% if i+8 == event.hour.to_i + 12 %>
+                        <td><%= event.name %></td>
+                        <% flag = true %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+              
+            
+              <% end %>
+=end
     
-    def self.months(month_number)
-        @@months[month_number]
-    end
+    
 
     private
       def calendar_event_params
