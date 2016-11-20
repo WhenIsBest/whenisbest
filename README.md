@@ -27,5 +27,10 @@ HTML, CSS, Javascript, Ruby on Rails
 - ChatBox to be able to discuss
 - Events: Event planner with optimal times to host event, Events sorted by certain factors (e.g. number of people available, etc.)
 
+# Other repositories:
+
+https://github.com/WhenIsBest/simple_calendar
+
+This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
 WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
