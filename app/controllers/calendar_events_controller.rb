@@ -34,6 +34,12 @@ class CalendarEventsController < ApplicationController
       @calendar_event.hour = calendar_event_params["hour"]
       @calendar_event.minutes = calendar_event_params["minutes"]
       @calendar_event.meridiem = calendar_event_params["meridiem"]
+        
+      @calendar_event.end_hour = calendar_event_params["end_hour"]
+      @calendar_event.end_minutes = calendar_event_params["end_minutes"]
+      @calendar_event.end_meridiem = calendar_event_params["end_meridiem"]
+        
+      @calendar_event.duration = @calendar_event.get_duration(@calendar_event.hour,@calendar_event.minutes,@calendar_event.meridiem,@calendar_event.end_hour,@calendar_event.end_minutes,@calendar_event.end_meridiem)
                 
       @calendar_event.date = "#{@calendar_event.month} #{@calendar_event.day}, #{@calendar_event.year}"
       
@@ -59,37 +65,12 @@ class CalendarEventsController < ApplicationController
       @calendar_event.destroy
 
       redirect_to calendar_events_path
-    end
-=begin
-    <% CalendarEvent.where(host: current_user.email).find_each do |event| %>
-                  <% if day.day.to_i == event.day.to_i  %> 
-                    <% if event.meridiem == "AM" %>
-                      <% if i+8 == event.hour.to_i %>
-                        <td><%= event.name %></td>
-                        <% flag = true %>
-                      <% end %>
-                    <% eelsif event.meridiem == "PM" && event.hour == "12"%>
-                      <% if i+8 == event.hour.to_i %>
-                        <td><%= event.name %></td>
-                        <% flag = true %>
-                      <% end %>
-                    <% else %>
-                      <% if i+8 == event.hour.to_i + 12 %>
-                        <td><%= event.name %></td>
-                        <% flag = true %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-              
-            
-              <% end %>
-=end
-    
+    end   
     
 
     private
       def calendar_event_params
-        params.require(:calendar_event).permit(:hour, :minutes, :meridiem, :name, :date)
+        params.require(:calendar_event).permit(:hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration)
       end
 end
 

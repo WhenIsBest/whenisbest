@@ -24,12 +24,22 @@
   </p>
  
   <p>
-    <%= f.label "Time:"%><br>
+    <%= f.label "Start Time:"%><br>
     <%= f.select :hour, ['12','1','2','3','4','5','6','7','8','9','10','11'] %>
 
     <%= f.select :minutes, ["00","15","30","45"]%>
 
-    <%= f.select :meridiem, ["AM","PM"]%></p>
+    <%= f.select :meridiem, ["AM","PM"]%>
+  </p>
+
+  <p>
+    <%= f.label "End Time:"%><br>
+    <%= f.select :'end_hour', ['12','1','2','3','4','5','6','7','8','9','10','11'] %>
+
+    <%= f.select :'end_minutes', ["00","15","30","45"]%>
+
+    <%= f.select :'end_meridiem', ["AM","PM"]%>
+  </p>
 
   <p>
     <%= f.submit "Create Event"%>
