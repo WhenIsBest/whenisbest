@@ -2,18 +2,18 @@
 
 <table>
   <tr>
-    <th>Event<th>
-    <th>Date</th>
-    <th>Start Time</th>
-    <th>Start Time</th>
+    <th><center>Event</center><th>
+    <th><center>Date</center></th>
+    <th><center>Start Time</center></th>
+    <th><center>End Time</center></th>
   </tr>
 
   <% @calendar_events.each do |calendar_event| %>
     <tr>
-      <td><%= calendar_event.name %></td>
-      <td><%= calendar_event.date %></td>  
-      <td><%= calendar_event.hour %>:<%= calendar_event.minutes %> <%= calendar_event.meridiem %></td>
-      <td><%= calendar_event.end_hour %>:<%= calendar_event.end_minutes %> <%= calendar_event.end_meridiem %></td>
+      <td><center><%= calendar_event.name %></center></td>
+      <td><center><%= calendar_event.date %></center></td>  
+      <td><center><%= calendar_event.hour %>:<%= calendar_event.minutes %> <%= calendar_event.meridiem %></center></td>
+      <td><center><%= calendar_event.end_hour %>:<%= calendar_event.end_minutes %> <%= calendar_event.end_meridiem %></center></td>
       <td><%= link_to 'Show', calendar_event_path(calendar_event) %></td>
       <td><%= link_to 'Edit', edit_calendar_event_path(calendar_event) %></td>
       <td><%= button_to 'Destroy', calendar_event_path(calendar_event),
@@ -23,4 +23,4 @@
   <% end %>
 </table>
 
-<%= link_to 'Back', welcome_homepage_path %>
+<%= link_to 'Back to home page', welcome_homepage_path %>
