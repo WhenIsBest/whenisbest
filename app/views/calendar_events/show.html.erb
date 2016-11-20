@@ -7,7 +7,7 @@
 </p>
 <p>
   <strong>Time:</strong>
-  <%= @calendar_event.hour %> <%= ":" %> <%= @calendar_event.minutes %> <%= @calendar_event.meridiem %>
+  <%= @calendar_event.hour %>:<%= @calendar_event.minutes %> <%= @calendar_event.meridiem %>
 </p>
 
 <%= link_to 'Edit', edit_calendar_event_path(@calendar_event) %> |
