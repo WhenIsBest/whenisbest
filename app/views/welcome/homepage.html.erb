@@ -1,0 +1,48 @@
+<body>
+    
+    <div class="header">
+        <h2>WhenIsBest</h2>
+        <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
+    </div>
+    
+    
+    <div class="content">
+        
+        <div class="sidebar">
+
+            <div class="groups">
+                <h3>Your Groups</h3>
+                <button><%= link_to 'Create new group', new_group_path %></button>
+            </div>
+
+            <div class="group-list">
+                <table>
+                  <% @groups.each do |group| %>
+                    <tr>
+                        <td>
+                            <div id="group-item">
+                                <h4><%= link_to group.name, group_path(group) %></h4>
+                                <p><%= group.description %></p>
+                            </div>
+                        </td>
+                    </tr>
+                  <% end %>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="calendar">
+            <h3>Your Calendar</h3>
+        </div>
+        
+        <button>Add to calendar</button>
+        <p> </p>
+        
+        <%= week_calendar do |date| %>
+        <center><%= date.strftime("%b %d") %></center>
+        <p> </p>
+        <% end %>
+    </div>
+    
+</body>

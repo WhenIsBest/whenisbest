@@ -19,9 +19,13 @@ HTML, CSS, Javascript, Ruby on Rails
 ### Goals
 - GOAL 1: Get familiar with Ruby on Rails
 - GOAL 2: Skeleton of the web app/Layout of application, set up a web server/domain or localhost for development, Have basic front-end
-- GOAL 3: Implement basic features (Be able to sync with Google Calendar, give users the ability to input/edit their calendars and make sure other users can’t see their calendars, give users ability to make groups, algorithm to automate scheduling for meetings/events)
+- GOAL 3: Implement basic features (Be able to sync with Google Calendar*, give users the ability to input/edit their calendars and make sure other users can’t see their calendars, give users ability to make groups, algorithm to automate scheduling for meetings/events)
+*Currently postponing syncing with Google Calendar because of an unresolved error
 
 ### Features Wanted in the Future
 - Sync with Facebook events if possible? Or be able to automatically pull in events from the area
 - ChatBox to be able to discuss
 - Events: Event planner with optimal times to host event, Events sorted by certain factors (e.g. number of people available, etc.)
+
+
+WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
