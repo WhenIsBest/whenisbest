@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20161124213628) do
     t.string   "name"
     t.datetime "start_time"
     t.integer  "duration"
+    t.integer  "priority"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
