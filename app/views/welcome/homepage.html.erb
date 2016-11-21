@@ -36,7 +36,7 @@
             <h3>Your Calendar</h3>
         </div>
         
-        <button>Add to calendar</button>
+        <button><%= link_to 'Add to calendar', new_calendar_event_path %></button>
         <p> </p>
         
         <%= week_calendar do |date| %>
