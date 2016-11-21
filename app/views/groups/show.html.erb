@@ -1,21 +1,44 @@
-<p>
-  <strong>Name:</strong>
-  <%= @group.name %>
-</p>
- 
-<p>
-  <strong>Description:</strong>
-  <%= @group.description %>
-</p>
+<body>
+    
+    <div class="header">
+        <h2>WhenIsBest</h2>
+        <p>Hello, User! This is what your group's schedule looks like this week.</p>
+        <button >Create an event</button>
+    </div>
+    
+    <div class="content">
+        
+        <div class="sidebar">
 
-<p>
-  <strong>Group members:</strong>
-  <%= @group.group_members %>
-</p>
+            <div id="group-page" class="groups">
+                <h3><%= @group.name %></h3>
+                <button><%= link_to 'Edit group', edit_group_path(@group) %></button>
+                <%= button_to 'Delete', group_path(@group),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' }%>
+            </div>
 
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', welcome_homepage_path %>
-<%= button_to 'Delete', group_path(@group),
-    method: :delete,
-    data: { confirm: 'Are you sure?' }%>
+                <div class="group-info">
+                    <div class="description">
+                        <h5>Description</h5>
+                        <p>
+                            <%= @group.description %>
+                        </p>
+                    </div>
+                    <div class="group-members">
+                        <h5>Group members</h5>
+                        <p>
+                            <%= @group.group_members %>
+                        </p>
+                    </div>
+                </div>
 
+        </div>
+        
+        <div class="calendar">
+            <p>This is where the calendar should be.</p>
+        </div>
+        
+    </div>
+    
+</body>
