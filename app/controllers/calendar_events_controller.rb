@@ -18,7 +18,7 @@ class CalendarEventsController < ApplicationController
     
     def create
       @calendar_event = CalendarEvent.new(calendar_event_params)
-      @calendar_event.host = current_user.email
+      @calendar_event.host = current_user.id
       puts calendar_event_params
       
       year = calendar_event_params["date(1i)"]
