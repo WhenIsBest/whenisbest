@@ -5,6 +5,16 @@ class CalendarEvent < ApplicationRecord
     validates :name, presence: true, length: {minimum: 1}
     validates :date, presence: true
     
+=begin
+    @@months = [["1","January"],["2","February"],["2","January"]]
+    
+    def get_month(month)
+      if month.length == 2
+         
+      end
+    end
+=end
+    
     def get_duration(start_hour,start_minutes,start_mrd,end_hour,end_minutes,end_mrd)
         
         if start_mrd == "PM"
