@@ -1,8 +1,13 @@
 <body>
     
     <div class="header">
-        <h2>WhenIsBest</h2>
-        <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
+        </div>
+        <div id="right">
+            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
     </div>
     
     <div class="content">
@@ -30,8 +35,6 @@
             </div>
 
         </div>
-        
-        <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
 
         <div class="calendar">
             
