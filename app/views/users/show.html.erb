@@ -1,0 +1,20 @@
+<p>
+  <%= @user.first_name %> <%= @user.last_name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %> 
+</p>
+
+<p>
+  <strong>Time Zone:</strong>
+  <%= @user.time_zone %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', welcome_homepage_path %>
+<%= button_to 'Delete', user_path(@user),
+    method: :delete,
+    data: { confirm: 'Are you sure?' }%>
+
