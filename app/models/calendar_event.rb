@@ -5,15 +5,25 @@ class CalendarEvent < ApplicationRecord
     validates :name, presence: true, length: {minimum: 1}
     validates :date, presence: true
     
-=begin
-    @@months = [["1","January"],["2","February"],["2","January"]]
+    @@months = [[1,"January"],[2,"February"],[3,"March"],[4,"April"],[5,"May"],[6,"June"],[7,"July"],[8,"August"],[9,"September"],[10,"October"],[11,"November"],[12,"December"]]
     
     def get_month(month)
-      if month.length == 2
-         
+      index = 0
+      other = 1
+      result = ""
+      if month.instance_of? String
+         index = 1
+          other = 0
       end
+        
+      @@months.each do |pair| 
+        if pair[index] == month
+          result = pair[other]
+        end
+      end
+        
+      result
     end
-=end
     
     def get_duration(start_hour,start_minutes,start_mrd,end_hour,end_minutes,end_mrd)
         
