@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20161126005228) do
-=======
 ActiveRecord::Schema.define(version: 20161124213628) do
->>>>>>> master
 
   create_table "calendar_events", force: :cascade do |t|
     t.string   "host"
