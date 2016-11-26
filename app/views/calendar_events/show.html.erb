@@ -3,7 +3,11 @@
 </p>
 <p>
   <strong>Date:</strong>
-  <%= @calendar_event.date %> 
+  <% if @calendar_event.day == nil %>
+    <%= @calendar_event.date %> 
+  <% else %>
+    <%= @calendar_event.month %> <%= @calendar_event.day %>, <%= @calendar_event.year %>
+  <% end %>
 </p>
 <p>
   <strong>Start Time:</strong>

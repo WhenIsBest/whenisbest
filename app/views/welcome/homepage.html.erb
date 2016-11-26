@@ -5,6 +5,8 @@
         <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
     </div>
     
+    <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+    
     <div class="content">
         
         <div class="sidebar">

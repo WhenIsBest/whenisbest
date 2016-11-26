@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :groups
   resources :events
   resources :calendar_events
+  resources :users  
     
   get 'onboarding/new'
 
