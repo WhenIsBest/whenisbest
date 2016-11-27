@@ -2,7 +2,11 @@
     <h1>New Group</h1>
 
     <%= render 'form' %>
-
+    
+    <div style="display: none;" id="new_member_form">
+        <%= render partial: "member_choice", locals: {group: false} %>
+    </div>
+    
     <%= link_to 'Back', welcome_homepage_path %>
 </body>
 

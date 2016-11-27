@@ -19,6 +19,14 @@ class GroupsController < ApplicationController
     def create
       @group = Group.new(group_params)
 
+      @members = []
+      members_param.each.with_index(1) do |member, index|
+          member = Member.create(:text => member, :location => index)
+          @members.push(member)
+      end
+        
+      @group.members = @members
+        
       if @group.save
           redirect_to @group
         else
