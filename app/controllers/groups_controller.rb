@@ -1,7 +1,7 @@
 class GroupsController < ApplicationController
     
     def index
-    @groups = Group.all
+       @groups = Group.all
     end
 
     def show
@@ -22,7 +22,10 @@ class GroupsController < ApplicationController
       members_param = params[:group_members]
       @members = []
         members_param.each.with_index(1) do |member, index|
-          @members.push(member)
+            member = User.find_by_email member
+            if member
+                @members.push(member)
+            end
       end
         
       @group.group_members = @members

@@ -32,7 +32,17 @@
                     <div class="group-members">
                         <h5>Group members</h5>
                         <p>
-                            <%= @group.group_members %>
+                            <% @group.group_members.each do |member| %>
+                                <div class="group-members-item">
+                                    <p>
+                                        <%= member.first_name %>
+                                        <%= member.last_name %>
+                                    </p>
+                                    <p>
+                                        <%= member.email %>
+                                    </p>
+                                </div>
+                            <% end %>
                         </p>
                     </div>
                     
