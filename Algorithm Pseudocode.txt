@@ -1,0 +1,66 @@
+***Note: Currently in the brute force stage.
+
+Input: This algorithm will ideally receive a range of dates (e.g., 1/13 - 1/15), a priority value, and the event duration (e.g., 2 hours). It might also be beneficial to allow time range as input.
+
+Output: This algorithm should output a list of possible time slots for the event, ordered by optimality (more people can attend, etc.)
+
+Algorithm:
+
+Gather group data
+
+Call find_slots(group_data,days,duration) and store result in list
+
+def find_slots(group_data,days,duration,priority=-1)
+    Create ListofEvents
+
+    Loop through the dates given:
+
+        Loop through all possible time slots of the given duration in the given or default time range (increments by 15 minutes):
+
+            Create Event object ("event")
+
+            Loop through every group member (including the poster):
+
+                If the group member can make it (if priority != -1, factor in priority):
+
+                    event.increment
+
+            Add event to ListofEvents 
+            
+    Sort ListOfEvents by Event.count 
+    
+    Return ListofEvents 
+end
+
+If list is empty, call find_slots(group_data,days,duration,priority)
+
+class Event
+
+    @@numAttended = 0
+    
+    def initialize(start_time, dur, day)
+        @start = start_time
+        @duration = dur
+        @date = day
+    end
+    
+    def increment
+        @@numAttended += 1
+    end
+    
+    def count
+        @@numAttended
+    end
+    
+    def startTime
+        @start
+    end
+    
+    def length
+        @duration
+    end
+    
+    def day
+        @date
+    end
+end

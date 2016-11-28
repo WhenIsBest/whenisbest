@@ -1,0 +1,26 @@
+<h1>Listing events</h1>
+
+<table>
+  <tr>
+    <th><center>Event</center><th>
+    <th><center>Date</center></th>
+    <th><center>Start Time</center></th>
+    <th><center>End Time</center></th>
+  </tr>
+  <% event_list = CalendarEvent.where(host: current_user.id).find_each %>
+  <% event_list.each do |calendar_event| %>
+    <tr>
+      <td><center><%= calendar_event.name %></center></td>
+      <td><center><%= calendar_event.month %> <%= calendar_event.day %>, <%= calendar_event.year %></center></td>  
+      <td><center><%= calendar_event.hour %>:<%= calendar_event.minutes %> <%= calendar_event.meridiem %></center></td>
+      <td><center><%= calendar_event.end_hour %>:<%= calendar_event.end_minutes %> <%= calendar_event.end_meridiem %></center></td>
+      <td><%= link_to 'Show', calendar_event_path(calendar_event) %></td>
+      <td><%= link_to 'Edit', edit_calendar_event_path(calendar_event) %></td>
+      <td><%= button_to 'Destroy', calendar_event_path(calendar_event),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }%></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Back to home page', welcome_homepage_path %>

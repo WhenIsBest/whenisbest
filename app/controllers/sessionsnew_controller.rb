@@ -1,2 +1,0 @@
-class SessionsnewController < ApplicationController
-end

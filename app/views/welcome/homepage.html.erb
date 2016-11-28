@@ -2,10 +2,10 @@
     
     <div class="header">
         <h2>WhenIsBest</h2>
-        <p>Hello, <%= @user.first_name %>! This is what your schedule looks like this week.</p>
-        <button >Add to calendar</button>
+        <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
     </div>
     
+    <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
     
     <div class="content">
         
@@ -32,11 +32,18 @@
             </div>
 
         </div>
-
+        
         <div class="calendar">
-            <p>This is where the calendar should be.</p>
+            <h3>Your Calendar</h3>
         </div>
         
+        <button><%= link_to 'Add to calendar', new_calendar_event_path %></button>
+        <p> </p>
+        
+        <%= week_calendar do |date| %>
+        <center><%= date.strftime("%b %d") %></center>
+        <p> </p>
+        <% end %>
     </div>
     
 </body>

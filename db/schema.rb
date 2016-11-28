@@ -10,7 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030055554) do
+ActiveRecord::Schema.define(version: 20161124213628) do
+
+  create_table "calendar_events", force: :cascade do |t|
+    t.string   "host"
+    t.string   "group"
+    t.integer  "start_time"
+    t.string   "hour"
+    t.string   "minutes"
+    t.string   "meridiem"
+    t.string   "name"
+    t.string   "location"
+    t.integer  "priority"
+    t.string   "date"
+    t.string   "month"
+    t.string   "day"
+    t.string   "year"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "end_hour"
+    t.string   "end_minutes"
+    t.string   "end_meridiem"
+    t.string   "duration"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "start_time"
+    t.integer  "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "groups", force: :cascade do |t|
     t.text     "name"
@@ -27,6 +57,7 @@ ActiveRecord::Schema.define(version: 20161030055554) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
+    t.string   "time_zone",       default: "UTC"
   end
 
 end
