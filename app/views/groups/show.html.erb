@@ -1,8 +1,14 @@
 <body>
     
     <div class="header">
-        <h2>WhenIsBest</h2>
-        <p>Hello, User! This is what your group's schedule looks like this week.</p>
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hello, User! This is what your group's schedule looks like this week.</p>
+        </div>
+        <div id="right">
+            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+        
     </div>
     
     <div class="content">
