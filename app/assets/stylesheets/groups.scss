@@ -8,6 +8,10 @@
 
 .sidebar {
     
+    h5,p {
+        margin: 0px;
+    }
+    
     .group-info {
         width: 100%;
         height: 550px;
@@ -28,6 +32,15 @@
         background-color: darkorange;
     }
     
+    .group-members {
+        
+        padding: 0px;
+        
+        .group-members-item {
+            border-bottom: thin solid darkgrey;
+        }
+    }
     
 }
+
 

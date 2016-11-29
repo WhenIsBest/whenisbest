@@ -18,7 +18,19 @@ class GroupsController < ApplicationController
     
     def create
       @group = Group.new(group_params)
+        
+      members_param = params[:group_members]
 
+      @members = []
+      members_param.each.with_index(1) do |member, index|
+          member = User.find_by_email member
+          if member
+            @members.push(member)
+          end
+      end
+        
+      @group.group_members = @members
+        
       if @group.save
           redirect_to @group
         else
@@ -28,7 +40,19 @@ class GroupsController < ApplicationController
     
     def update
       @group = Group.find(params[:id])
-
+        
+      members_param = params[:group_members]
+        
+      @members = @group.group_members
+      members_param.each.with_index(1) do |member,index|
+          member = User.find_by_email member
+          if member
+              @members.push(member)
+          end
+      end
+        
+      @group.group_members = @members
+          
       if @group.update(group_params)
         redirect_to @group
       else
