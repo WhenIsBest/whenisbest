@@ -1,19 +1,26 @@
 <body>
     
+    
     <div class="header">
-        <h2>WhenIsBest</h2>
-        <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
+        </div>
+        <div id="right">
+            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
     </div>
     
-    <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
     
     <div class="content">
+        
         
         <div class="sidebar">
 
             <div class="groups">
                 <h3>Your Groups</h3>
                 <button><%= link_to 'Create new group', new_group_path %></button>
+                <button><%= link_to 'Group manager', groups_path %></button>
             </div>
 
             <div class="group-list">
@@ -32,18 +39,27 @@
             </div>
 
         </div>
+
+        
         
         <div class="calendar">
-            <h3>Your Calendar</h3>
+            
+            <div class="calendar-header">
+                <h3>Your Calendar</h3>
+                <button><%= link_to 'Add to calendar', new_calendar_event_path %></button>
+            </div>
+            
+            <div class="calendar-body">
+                <p> </p>
+                <%= week_calendar do |date| %>
+                <center><%= date.strftime("%b %d") %></center>
+                <p> </p>
+                <% end %>
+            </div>
+            
         </div>
+    
         
-        <button><%= link_to 'Add to calendar', new_calendar_event_path %></button>
-        <p> </p>
-        
-        <%= week_calendar do |date| %>
-        <center><%= date.strftime("%b %d") %></center>
-        <p> </p>
-        <% end %>
     </div>
     
 </body>

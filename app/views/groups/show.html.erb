@@ -1,9 +1,14 @@
 <body>
     
     <div class="header">
-        <h2>WhenIsBest</h2>
-        <p>Hello, User! This is what your group's schedule looks like this week.</p>
-        <button >Create an event</button>
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hello, User! This is what your group's schedule looks like this week.</p>
+        </div>
+        <div id="right">
+            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+        
     </div>
     
     <div class="content">
@@ -13,30 +18,54 @@
             <div id="group-page" class="groups">
                 <h3><%= @group.name %></h3>
                 <button><%= link_to 'Edit group', edit_group_path(@group) %></button>
-                <%= button_to 'Delete', group_path(@group),
-                    method: :delete,
-                    data: { confirm: 'Are you sure?' }%>
+                <button><%= link_to 'Group manager', groups_path %></button>
+                <button><%= link_to 'Back to homepage', welcome_homepage_path %></button>
             </div>
 
                 <div class="group-info">
+                    
                     <div class="description">
                         <h5>Description</h5>
                         <p>
                             <%= @group.description %>
                         </p>
                     </div>
+                    
                     <div class="group-members">
                         <h5>Group members</h5>
                         <p>
-                            <%= @group.group_members %>
+                            <% @group.group_members.each do |member| %>
+                                <div class="group-members-item">
+                                    <p>
+                                        <%= member.first_name %>
+                                        <%= member.last_name %>
+                                    </p>
+                                    <p>
+                                        <%= member.email %>
+                                    </p>
+                                </div>
+                            <% end %>
                         </p>
                     </div>
+                    
+                    <div>
+                        <%= button_to 'Delete', group_path(@group),
+                            method: :delete,
+                            data: { confirm: 'Are you sure?' }%>
+                    </div>
+                    
                 </div>
 
         </div>
         
         <div class="calendar">
-            <p>This is where the calendar should be.</p>
+            <div class="calendar-header" style="background-color:#ffca89">
+                <h3>Your Group's Calendar</h3>
+                <button >Suggest an event</button>
+            </div>
+            <div class="calendar-body">
+                <p>This is where the calendar should be.</p>
+            </div>
         </div>
         
     </div>

@@ -25,9 +25,14 @@
   </p>
  
   <p>
-    <%= f.label :group_members %><br>
-      <%= collection_select(:group, :group_members, User.all, :first_name, :email) %>
+    <h3>Add group members</h3>
+    <div id="member_choices">
+        <%= render 'member_choice' %>
+    </div>
+
   </p>
+
+  <a href="javascript:;" id="addNewMember">Add New Member</a>
 
   <p>
     <%= f.submit %>
