@@ -1,75 +1,77 @@
-
-    <div class="header">
-        <div id="left">
-            <h2>WhenIsBest</h2>
-            <p>Hello, User! Let's create a new group!</p>
-        </div>
-        <div id="right">
-            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
-        </div>
-        
+<div class="header">
+    <div id="left">
+        <h2>WhenIsBest</h2>
+        <p>Hello, User! Let's create a new group!</p>
     </div>
+    <div id="right">
+        <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+    </div>    
+</div>
 
-    <div class="edit-group">
+<div class="edit-group">
         
-        <h1>Edit Group</h1>
-        
+    <div class="group-header">
+        <h3>Edit group <%= @group.name %></h3>
+        <button><%= link_to 'Cancel', group_path %></button>
+    </div>
+    
+    <div class="group-body">
         <%= form_for @group do |f| %>
 
-          <% if @group.errors.any? %>
-            <div id="error_explanation">
-              <h2>
-                <%= pluralize(@group.errors.count, "error") %> prohibited
-                this group from being saved:
-              </h2>
-              <ul>
-                <% @group.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
+            <% if @group.errors.any? %>
+                <div id="error_explanation">
+                  <h2>
+                    <%= pluralize(@group.errors.count, "error") %> prohibited
+                    this group from being saved:
+                  </h2>
+                  <ul>
+                    <% @group.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <p>
+                <%= f.label :name %><br>
+                <%= f.text_field :name %>
+              </p>
+
+              <p>
+                <%= f.label :description %><br>
+                <%= f.text_area :description %>
+              </p>
+
+
+            <div>
+              <h3>Current members</h3>
+                <% @group.group_members.each do |member| %>
+                    <strong><%= member.first_name %>
+                    <%= member.last_name %></strong>
+                    <%= member.email %><br>
                 <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <p>
-            <%= f.label :name %><br>
-            <%= f.text_field :name %>
-          </p>
-
-          <p>
-            <%= f.label :description %><br>
-            <%= f.text_area :description %>
-          </p>
-
-        
-        <div>
-          <h3>Current members</h3>
-            <% @group.group_members.each do |member| %>
-                <strong><%= member.first_name %>
-                <%= member.last_name %></strong>
-                <%= member.email %><br>
-            <% end %>
-        </div>
-
-          <p>
-            <h3>Add new group members</h3>
-            <div id="member_choices">
-                <%= render 'member_choice' %>
             </div>
 
-          </p>
+              <p>
+                <h3>Add new group members</h3>
+                <div id="member_choices">
+                    <%= render 'member_choice' %>
+                </div>
 
-          <a href="javascript:;" id="addNewMember">Add New Member</a>
+              </p>
 
-          <p>
-            <%= f.submit %>
-          </p>
+              <a href="javascript:;" id="addNewMember">Add New Member</a>
+
+              <p>
+                <%= f.submit %>
+              </p>
 
         <% end %>
 
-        <div style="display: none;" id="new_member_form">
-            <%= render partial: "member_choice", locals: {group: false} %>
-        </div>
-
-        <%= link_to 'Back', welcome_homepage_path %>
+            <div style="display: none;" id="new_member_form">
+                <%= render partial: "member_choice", locals: {group: false} %>
+            </div>
     
     </div>
+    
+</div>

@@ -44,11 +44,37 @@
 }
 
 .create-group {
-    margin-top: 80px;
+    margin-top: 70px;
 }
 
 .edit-group {
-    margin-top: 80px;
+    margin-top: 70px;
+    background-color: white;
+    width: 100%;
 }
 
+.group-header {
+    background-color: cadetblue;
+    //height: 80px;
+    width: 100%;
+    top: 0px; 
+    padding: 7px;
+    padding-top: 3px;
+    padding-right: 0px;
+    box-shadow: 1px 0px 1px #888888;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    margin-bottom: 0px;
+    bottom: 0px;
+    color: white;
+}
+
+.group-body {
+    width: 100%;
+    height: 550px;
+    background-color: white;
+    top: 0px;
+    margin-top: 0px;
+    padding-left: 10px;
+}
 
