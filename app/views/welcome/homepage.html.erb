@@ -7,7 +7,7 @@
             <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
         </div>
         <div id="right">
-            <button id="blue-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
+            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
         </div>
     </div>
     
@@ -18,7 +18,7 @@
         <div class="sidebar">
 
             <div class="groups">
-                <h3>Your Groups</h3>
+                <h3>Your groups</h3>
                 <button id="white-button"><%= link_to 'Create new group', new_group_path %></button>
                 <button id="white-button"><%= link_to 'Group manager', groups_path %></button>
             </div>
@@ -45,8 +45,8 @@
         <div class="calendar">
             
             <div class="calendar-header">
-                <h3>Your Calendar</h3>
-                <button><%= link_to 'Add to calendar', new_calendar_event_path %></button>
+                <h3>Your calendar</h3>
+                <button id="white-button"><%= link_to 'Add to calendar', new_calendar_event_path %></button>
             </div>
             
             <div class="calendar-body">
