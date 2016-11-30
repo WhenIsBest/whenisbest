@@ -1,12 +1,27 @@
 <body>
-    <h1>New Group</h1>
-
-    <%= render 'form' %>
     
-    <div style="display: none;" id="new_member_form">
-        <%= render partial: "member_choice", locals: {group: false} %>
+    <div class="header">
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hello, User! Let's create a new group!</p>
+        </div>
+        <div id="right">
+            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+        
     </div>
     
-    <%= link_to 'Back', welcome_homepage_path %>
+    <div class="create-group">
+        <h1>Create a new group</h1>
+
+        <%= render 'form' %>
+
+        <div style="display: none;" id="new_member_form">
+            <%= render partial: "member_choice", locals: {group: false} %>
+        </div>
+
+        <%= link_to 'Back', welcome_homepage_path %>
+    </div>
+
 </body>
 

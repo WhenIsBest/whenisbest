@@ -1,6 +1,20 @@
-<h1>Edit Group</h1>
 
-    <%= form_for @group do |f| %>
+    <div class="header">
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hello, User! Let's create a new group!</p>
+        </div>
+        <div id="right">
+            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+        
+    </div>
+
+    <div class="edit-group">
+        
+        <h1>Edit Group</h1>
+        
+        <%= form_for @group do |f| %>
 
           <% if @group.errors.any? %>
             <div id="error_explanation">
@@ -50,10 +64,12 @@
             <%= f.submit %>
           </p>
 
-    <% end %>
+        <% end %>
 
-    <div style="display: none;" id="new_member_form">
-        <%= render partial: "member_choice", locals: {group: false} %>
+        <div style="display: none;" id="new_member_form">
+            <%= render partial: "member_choice", locals: {group: false} %>
+        </div>
+
+        <%= link_to 'Back', welcome_homepage_path %>
+    
     </div>
-
-<%= link_to 'Back', welcome_homepage_path %>
