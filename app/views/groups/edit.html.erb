@@ -4,7 +4,7 @@
         <p>Hello, User! Let's create a new group!</p>
     </div>
     <div id="right">
-        <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        <button id="blue-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
     </div>    
 </div>
 
@@ -12,7 +12,7 @@
         
     <div class="group-header">
         <h3>Edit group <%= @group.name %></h3>
-        <button><%= link_to 'Cancel', group_path %></button>
+        <button id="white-button"><%= link_to 'Cancel', group_path %></button>
     </div>
     
     <div class="group-body">

@@ -6,7 +6,7 @@
             <p>Hello, User! This is what your group's schedule looks like this week.</p>
         </div>
         <div id="right">
-            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+            <button id="blue-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
         </div>
         
     </div>
@@ -17,9 +17,9 @@
 
             <div id="group-page" class="groups">
                 <h3><%= @group.name %></h3>
-                <button><%= link_to 'Edit group', edit_group_path(@group) %></button>
-                <button><%= link_to 'Group manager', groups_path %></button>
-                <button><%= link_to 'Back to homepage', welcome_homepage_path %></button>
+                <button id="white-button"><%= link_to 'Edit group', edit_group_path(@group) %></button>
+                <button id="white-button"><%= link_to 'Group manager', groups_path %></button>
+                <button id="white-button"><%= link_to 'Back to homepage', welcome_homepage_path %></button>
             </div>
 
                 <div class="group-info">

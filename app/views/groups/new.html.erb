@@ -6,21 +6,26 @@
             <p>Hello, User! Let's create a new group!</p>
         </div>
         <div id="right">
-            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+            <button id="blue-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
         </div>
         
     </div>
     
     <div class="create-group">
-        <h1>Create a new group</h1>
+        
+        <div class="group-header">
+            <h3>Create a new group</h3>
+            <button id="white-button"><%= link_to 'Back to homepage', welcome_homepage_path %></button>
+        </div>
+        
+        <div class="group-body">
+            <%= render 'form' %>
 
-        <%= render 'form' %>
-
-        <div style="display: none;" id="new_member_form">
-            <%= render partial: "member_choice", locals: {group: false} %>
+            <div style="display: none;" id="new_member_form">
+                <%= render partial: "member_choice", locals: {group: false} %>
+            </div>
         </div>
 
-        <%= link_to 'Back', welcome_homepage_path %>
     </div>
 
 </body>
