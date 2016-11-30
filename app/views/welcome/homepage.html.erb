@@ -24,18 +24,14 @@
             </div>
 
             <div class="group-list">
-                <table>
-                  <% @groups.each do |group| %>
-                    <tr>
-                        <td>
-                            <div id="group-item">
-                                <h4><%= link_to group.name, group_path(group) %></h4>
-                                <p><%= group.description %></p>
-                            </div>
-                        </td>
-                    </tr>
-                  <% end %>
-                </table>
+
+                <% @groups.each do |group| %>
+                    <div id="group-item">
+                        <h4><%= link_to group.name, group_path(group) %></h4>
+                        <p><%= group.description %></p>
+                    </div>
+                <% end %>
+                
             </div>
 
         </div>

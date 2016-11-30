@@ -74,36 +74,34 @@ body {
     }
 
     .group-list {
-        width: 100%;
+        width: 377px;
         height: 600px;
         line-height: 3em;
         overflow-y: scroll;
         overflow-x: hidden;
         padding: 0px;
-        padding-left: 5px;
-        padding-right: 4px;
         background-color: white;
         color: darkgray;
         
         #group-item {
-            width: 340px;
-            border-bottom: thin solid darkgrey;
+            width: 100%;
+            border-bottom: thin solid #e8e8e8;
             margin: 0px;
             padding-left: 7px;
             
-            h4 {
+            h4,p {
                 padding: 0px;
                 margin: 0px;
             }
             
             p {
-                padding: 0px;
-                margin: 0px;
+                padding-bottom: 3px;
             }
+            
         }
         
         #group-item:hover {
-            background-color: darkorange;  
+            background-color: #fccb85;  
         }
     }
 }
