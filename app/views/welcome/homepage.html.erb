@@ -3,8 +3,9 @@
     
     <div class="header">
         <div id="left">
-            <h2>WhenIsBest</h2>
-            <p>Hi <%= @user.first_name %>! Let's see what your schedule looks like this week...</p>
+            <h1>WhenIsBest</h1>
+            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
+            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
         </div>
         <div id="right">
             <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
