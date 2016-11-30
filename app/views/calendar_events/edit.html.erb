@@ -1,5 +1,22 @@
-<h1>Edit Event</h1>
+<body>
+    <div class="header">
+        <div id="left">
+            <h2>WhenIsBest</h2>
+            <p>Hello, User! Edit your event!</p>
+        </div>
+        <div id="right">
+            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+    </div>
 
-<%= render 'form2' %>
-
-<%= link_to 'Back', welcome_homepage_path %>
+    <div class="edit-event">
+        <div class="event-header">
+            <h3>Edit Event</h3>
+            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
+        </div>
+        
+        <div class="event-body">
+            <%= render 'form2' %>
+        </div>
+    </div>
+</body>

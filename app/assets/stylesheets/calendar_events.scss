@@ -2,12 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.create-event {
+.create-event, .edit-event {
     margin-top: 70px;
     background-color: white;
     width: 100%;
     
-    .new-event-header {
+    .event-header {
         background-color: crimson;
         top: 0px; 
         padding: 7px;
@@ -21,7 +21,7 @@
         color: white;
     }
     
-    .new-event-body {
+    .event-body {
         background-color: white;
         height: 550px;
         top: 0px;
@@ -29,3 +29,25 @@
         padding-left: 10px;
     }
 }
+
+//    .event-header {
+//        background-color: crimson;
+//        top: 0px; 
+//        padding: 7px;
+//        padding-top: 3px;
+//        padding-right: 0px;
+//        box-shadow: 1px 0px 1px #888888;
+//        border-top-left-radius: 7px;
+//        border-top-right-radius: 7px;
+//        margin-bottom: 0px;
+//        bottom: 0px;
+//        color: white;
+//    }
+//    
+//    .event-body {
+//        background-color: white;
+//        height: 550px;
+//        top: 0px;
+//        margin-top: 0px;
+//        padding-left: 10px;
+//    }
