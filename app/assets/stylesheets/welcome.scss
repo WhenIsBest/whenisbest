@@ -19,7 +19,7 @@ body {
     
     #left {
         float: left;
-        padding-top: 20px;
+        padding-top: 15px;
         padding-bottom: 15px;
         vertical-align: middle;
         
@@ -126,7 +126,7 @@ body {
 
 .calendar {
     width: 1130px;
-    height: 650px;
+    height: 700px;
     float: right;
     margin: 0px;
     padding: 0px;
@@ -145,6 +145,7 @@ body {
     
     .calendar-body {
         overflow: hidden;
+        height: 600px;
         background-color: white;
     }
 }
