@@ -32,6 +32,7 @@ class GroupsController < ApplicationController
       @group.group_members = @members
         
       if @group.save
+          session[:group_id] = @group.id
           redirect_to @group
         else
           render 'new'
@@ -62,6 +63,8 @@ class GroupsController < ApplicationController
     
     def destroy
       @group = Group.find(params[:id])
+      session[:group_id] = nil
+      reset_session
       @group.destroy
 
       redirect_to groups_path

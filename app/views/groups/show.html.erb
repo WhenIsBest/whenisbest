@@ -55,12 +55,17 @@
         <div class="calendar">
             <div class="calendar-header" style="background-color:#44af61">
                 <h3><%= @group.name %>'s calendar</h3>
-                <button id="white-button">Suggest an event</button>
+                <button id="white-button"><%= link_to 'Suggest an event', new_calendar_event_path %></button>
             </div>
             <div class="calendar-body">
-                <p>This is where the calendar should be.</p>
+                <p> </p>
+                <%= week_calendar do |date| %>
+                <center><%= date.strftime("%b %d") %></center>
+                <p> </p>
+                <% end %>
             </div>
         </div>
+    
         
     </div>
     
