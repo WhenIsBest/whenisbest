@@ -19,7 +19,6 @@ class CalendarEventsController < ApplicationController
     def create
       @calendar_event = CalendarEvent.new(calendar_event_params)
       @calendar_event.host = current_user.id
-      puts calendar_event_params
       
       year = calendar_event_params["date(1i)"]
       month = calendar_event_params["date(2i)"]
@@ -42,6 +41,8 @@ class CalendarEventsController < ApplicationController
       @calendar_event.duration = @calendar_event.get_duration(@calendar_event.hour,@calendar_event.minutes,@calendar_event.meridiem,@calendar_event.end_hour,@calendar_event.end_minutes,@calendar_event.end_meridiem)
         
       @calendar_event.date = "#{@calendar_event.month} #{@calendar_event.day}, #{@calendar_event.year}"
+        
+      @calendar_event.group = calendar_event_params["group"]
       
       if @calendar_event.save!
         redirect_to @calendar_event
@@ -70,7 +71,7 @@ class CalendarEventsController < ApplicationController
 
     private
       def calendar_event_params
-        params.require(:calendar_event).permit(:hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration, :day, :year, :month)
+        params.require(:calendar_event).permit(:hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration, :day, :year, :month, :group)
       end
 end
 
