@@ -1,7 +1,25 @@
 <body>
-    <h1>Create a new event</h1>
+    
+    <div class="header">
+        <div id="left">
+            <h1>WhenIsBest</h1>
+            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
+            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
+        </div>
+        <div id="right">
+            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+    </div>
+    
+    <div class="create-event">
+        <div class="event-header">
+            <h3>Create a new event</h3>
+            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
+        </div>
+        
+        <div class="event-body">
+            <%= render 'form' %>
+        </div>
+    </div>
 
-    <%= render 'form' %>
-
-    <%= link_to 'Back', welcome_homepage_path %>
 </body>

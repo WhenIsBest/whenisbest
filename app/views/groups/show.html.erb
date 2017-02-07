@@ -2,13 +2,13 @@
     
     <div class="header">
         <div id="left">
-            <h2>WhenIsBest</h2>
-            <p>Hello, User! This is what your group's schedule looks like this week.</p>
+            <h1>WhenIsBest</h1>
+            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
+            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
         </div>
         <div id="right">
-            <button><%= link_to 'Settings', edit_user_path(current_user) %></button>
+            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
         </div>
-        
     </div>
     
     <div class="content">
@@ -17,9 +17,9 @@
 
             <div id="group-page" class="groups">
                 <h3><%= @group.name %></h3>
-                <button><%= link_to 'Edit group', edit_group_path(@group) %></button>
-                <button><%= link_to 'Group manager', groups_path %></button>
-                <button><%= link_to 'Back to homepage', welcome_homepage_path %></button>
+                <button id="white-button"><%= link_to 'Edit group', edit_group_path(@group) %></button>
+                <button id="white-button"><%= link_to 'Manage groups', groups_path %></button>
+                <button id="white-button"><%= link_to 'Back to homepage', welcome_homepage_path %></button>
             </div>
 
                 <div class="group-info">
@@ -48,26 +48,18 @@
                         </p>
                     </div>
                     
-                    <div>
-                        <%= button_to 'Delete', group_path(@group),
-                            method: :delete,
-                            data: { confirm: 'Are you sure?' }%>
-                    </div>
-                    
                 </div>
 
         </div>
         
         <div class="calendar">
-            <div class="calendar-header" style="background-color:#ffca89">
-                <h3>Your Group's Calendar</h3>
-                <button ><%= link_to 'Suggest an event', new_calendar_event_path %></button>
+            <div class="calendar-header" style="background-color:#44af61">
+                <h3><%= @group.name %>'s calendar</h3>
+                <button id="white-button"><%= link_to 'Suggest an event', new_calendar_event_path %></button>
             </div>
             <div class="calendar-body">
-                <p> </p>
                 <%= week_calendar do |date| %>
                 <center><%= date.strftime("%b %d") %></center>
-                <p> </p>
                 <% end %>
             </div>
         </div>
