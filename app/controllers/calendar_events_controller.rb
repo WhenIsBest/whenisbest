@@ -45,7 +45,8 @@ class CalendarEventsController < ApplicationController
       @calendar_event.group = calendar_event_params["group"]
       
       if @calendar_event.save!
-        redirect_to @calendar_event
+#        redirect_to @calendar_event
+          redirect_to '/welcome/homepage'
       else
         render 'new'
       end
@@ -55,7 +56,8 @@ class CalendarEventsController < ApplicationController
       @calendar_event = CalendarEvent.find(params[:id])
         
       if @calendar_event.update(calendar_event_params)
-        redirect_to @calendar_event
+#        redirect_to @calendar_event
+          redirect_to '/welcome/homepage'
       else
         render 'edit'
       end
