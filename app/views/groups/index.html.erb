@@ -11,7 +11,17 @@
     <tr>
       <td><%= group.name %></td>
       <td><%= group.description %></td>
-      <td><%= group.group_members %></td>
+      <td>
+        <% group.group_members.each do |member| %>
+            <div class="group-members-item">
+                <p>
+                    <%= member.first_name %>
+                    <%= member.last_name %>
+                    ( <%= member.email %> )
+                </p>
+            </div>
+        <% end %>
+      </td>
       <td><%= link_to 'Show', group_path(group) %></td>
       <td><%= link_to 'Edit', edit_group_path(group) %></td>
       <td><%= button_to 'Destroy', group_path(group),
