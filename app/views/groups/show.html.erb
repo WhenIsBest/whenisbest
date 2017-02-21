@@ -53,7 +53,8 @@
         <div class="calendar">
             <div class="calendar-header" style="background-color:#44af61">
                 <h3><%= @group.name %>'s calendar</h3>
-                <button id="white-button"><%= link_to 'Suggest an event', new_calendar_event_path %></button>
+                
+                <%= link_to("Suggest an event", new_statics_path(:group => @group.id, :members => @group.group_members)) %>
             </div>
             <div class="calendar-body">
                 <%= week_calendar do |date| %>

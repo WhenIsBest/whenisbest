@@ -12,6 +12,10 @@ class CalendarEventsController < ApplicationController
       @calendar_event = CalendarEvent.new
     end
     
+    def group_new
+        @calendar_event = CalendarEvent.group_new(:group => group)
+    end
+    
     def edit
       @calendar_event = CalendarEvent.find(params[:id])
     end
