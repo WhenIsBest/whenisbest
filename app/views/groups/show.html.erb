@@ -37,9 +37,10 @@
                             <% @group.group_members.each do |member| %>
                                 <div class="group-members-item">
                                     <p>
-                                        <%= member.first_name %>
-                                        <%= member.last_name %>
-                                        ( <%= member.email %> )
+                                        <% user = User.find(member) %>
+                                        <%= user.first_name %>
+                                        <%= user.last_name %>
+                                        ( <%= user.email %> )
                                     </p>
                                 </div>
                             <% end %>
