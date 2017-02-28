@@ -43,6 +43,8 @@ HTML, CSS (SASS), Javascript (CoffeeScript), Ruby on Rails
 
 https://github.com/WhenIsBest/simple_calendar
 
+In order to receive the most recent updates to the simple_calendar code, one should copy and paste the code from the files in hte simple_calendar repo (look at the most recent commits) into their own files. If you can find a way to just pull from the repo instead, please let us know since it has not been working thus far.
+
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
 
