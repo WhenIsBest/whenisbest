@@ -14,9 +14,10 @@
     
     .group-info {
         width: 100%;
-        height: 550px;
+        height: 600px;
         line-height: 3em;
-        overflow: scroll;
+        overflow-y: scroll;
+        overflow-x: hidden;
         padding: 0px;
         padding-left: 5px;
         padding-right: 4px;
@@ -29,7 +30,7 @@
     }
     
     #group-page {
-        background-color: darkorange;
+        background-color: #387f4b;
     }
     
     .group-members {
@@ -43,4 +44,33 @@
     
 }
 
+.create-group,.edit-group {
+    
+    margin-top: 70px;
+    background-color: white;
+    width: 100%;
+    
+    .group-header {
+        background-color: #5938bc;
+        top: 0px; 
+        padding: 7px;
+        padding-top: 3px;
+        padding-right: 0px;
+        box-shadow: 1px 0px 1px #888888;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        margin-bottom: 0px;
+        bottom: 0px;
+        color: white;
+    }
+
+    .group-body {
+        height: 550px;
+        background-color: white;
+        top: 0px;
+        margin-top: 0px;
+        padding-left: 10px;
+    }
+
+}
 

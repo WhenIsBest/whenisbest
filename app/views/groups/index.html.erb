@@ -11,7 +11,26 @@
     <tr>
       <td><%= group.name %></td>
       <td><%= group.description %></td>
-      <td><%= group.group_members %></td>
+      <td>
+        <% puts group.id %>
+        
+        <% if group.group_members != nil %>
+            <% group.group_members.each do |member| %>
+                <div class="group-members-item">
+                    <p>
+                        <% if member.kind_of?(User) %>
+                          <% user = member %>
+                        <% else %>
+                          <% user = User.find(member) %>
+                        <% end %>
+                        <%= user.first_name %>
+                        <%= user.last_name %>
+                        ( <%= user.email %> )
+                    </p>
+                </div>
+            <% end %>
+        <% end %>
+      </td>
       <td><%= link_to 'Show', group_path(group) %></td>
       <td><%= link_to 'Edit', edit_group_path(group) %></td>
       <td><%= button_to 'Destroy', group_path(group),

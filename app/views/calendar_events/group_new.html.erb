@@ -4,21 +4,22 @@
         <div id="left">
             <h1>WhenIsBest</h1>
             <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
+            <p id="logout">Not <%= current_user.first_name %>? Click <%=  link_to 'here', login_path %>.</p>
         </div>
         <div id="right">
             <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
         </div>
     </div>
-
-    <div class="edit-event">
+    
+    <div class="create-event">
         <div class="event-header">
-            <h3>Edit Event</h3>
-            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
+            <h3>Create a new event</h3>
+            
         </div>
         
         <div class="event-body">
-            <%= render 'form2' %>
+            <p> <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
         </div>
     </div>
+
 </body>
