@@ -13,22 +13,13 @@
     
     <div class="create-event">
         <div class="event-header">
-            <h3><% if params[:group] %>
-                Suggest a new group event
-            <% else %>
-                Create a new event
-            <% end %></h3>
+            Suggest a new group event
             
         </div>
         
         <div class="event-body">
             
-            <p>
-            <% if params[:group] %>
-                <%= render 'form_group' %>
-            <% else %>
-                <%= render 'form' %> 
-            <% end %>
+            <%= render 'form_group' %>
             <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
             
         </div>

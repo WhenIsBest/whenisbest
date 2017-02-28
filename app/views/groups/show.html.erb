@@ -4,7 +4,7 @@
         <div id="left">
             <h1>WhenIsBest</h1>
             <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
+            <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', login_path %>.</p>
         </div>
         <div id="right">
             <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
@@ -37,11 +37,10 @@
                             <% @group.group_members.each do |member| %>
                                 <div class="group-members-item">
                                     <p>
-                                        <%= member.first_name %>
-                                        <%= member.last_name %>
-                                    </p>
-                                    <p>
-                                        <%= member.email %>
+                                        <% user = User.find(member) %>
+                                        <%= user.first_name %>
+                                        <%= user.last_name %>
+                                        ( <%= user.email %> )
                                     </p>
                                 </div>
                             <% end %>
@@ -55,7 +54,8 @@
         <div class="calendar">
             <div class="calendar-header" style="background-color:#44af61">
                 <h3><%= @group.name %>'s calendar</h3>
-                <button id="white-button"><%= link_to 'Suggest an event', new_calendar_event_path %></button>
+                
+                <%= link_to("Suggest an event", new_statics_path(:group => @group.id, :members => @group.group_members)) %>
             </div>
             <div class="calendar-body">
                 <%= week_calendar do |date| %>

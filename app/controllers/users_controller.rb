@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+    
+    serialize :group_ids, Array
+    
     def show
       @user = User.find(params[:id])
     end
@@ -8,6 +11,7 @@ class UsersController < ApplicationController
     
     def create
         @user = User.new(user_params)
+        @user.group_ids = Array.new
         if @user.save
           session[:user_id] = @user.id
             redirect_to '/welcome/homepage'
@@ -21,7 +25,7 @@ class UsersController < ApplicationController
     end
     def update
       @user = User.find(params[:id])
-
+        
       if @user.update(user_params)
         redirect_to @user
       else
@@ -30,6 +34,6 @@ class UsersController < ApplicationController
     end
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :time_zone)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :time_zone, :group_ids)
     end
 end

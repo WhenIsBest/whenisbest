@@ -5,7 +5,30 @@
         <div id="left">
             <h1>WhenIsBest</h1>
             <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
+            <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', login_path %>.</p>
+        </div>
+        <div id="update">
+            <p>
+                
+                <% if current_user.group_ids == nil %>
+                  <i>UPDATE AVAILABLE. Please refresh the page. </i>
+                  
+                  <% group_ids = [] %>
+
+                  <% @groups.each do |group| %>
+                    <% group.group_members.each do |member| %>       
+                      <% if member.id == current_user.id %>
+                        <% group_ids << group.id %>
+                      <% end %>
+                
+                      
+                    <% end %>
+                  <% end %>
+                  <% current_user.group_ids = group_ids %>
+                <% end %>
+                
+                <% current_user.save! %>
+            </p>
         </div>
         <div id="right">
             <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
@@ -25,14 +48,28 @@
             </div>
 
             <div class="group-list">
+            <% if current_user.group_ids != nil %>
+              <% if current_user.group_ids.kind_of?(Array) %>
+                <% group_ids = current_user.group_ids %>
+              <% else %>
+                <%= current_user.group_ids %>
+                <% group_ids = current_user.group_ids.remove("[").remove("]").split(",") %>
+              <% end %>
+            
+              <% group_ids.each do |group_id| %>
+                  <div id="group-item">
+                    
+                    <% if group_id != nil %>
+                        <% group = Group.where(:id => group_id).first %>
+                        <% if group != nil %>
+                          <h4><%=link_to group.name, group_path(group)%></h4>
+                          <p><%= group.description %></p>
+                         <% end %>
+                    <% end %>
+                  </div>
+              <% end %>
+              <% end %>
 
-                <% @groups.each do |group| %>
-                    <div id="group-item">
-                        <h4><%= link_to group.name, group_path(group) %></h4>
-                        <p><%= group.description %></p>
-                    </div>
-                <% end %>
-                
             </div>
 
         </div>
