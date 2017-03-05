@@ -8,6 +8,10 @@
   </tr>
 
   <% @groups.each do |group| %>
+    
+    <% if not current_user.group_ids.include? group.id %>
+      <% next %>
+    <% end %>
     <tr>
       <td><%= group.name %></td>
       <td><%= group.description %></td>
