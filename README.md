@@ -17,18 +17,18 @@ Anyone with a busy schedule; e.g., Organizations, members of a group project, fr
 HTML, CSS (SASS), Javascript (CoffeeScript), Ruby on Rails 
 
 ### Goals
-- GOAL 1: Begin implementation of algorithm to automate scheduling for meetings/events
+- GOAL 1 (February 17): Readjust database schema for more effective database reads 
+    - The current schema can be found in db/schema.rb. (The "events" table is not used)
+- GOAL 2 (March 10): Begin implementation of algorithm to automate scheduling for meetings/events
     - The basic implementation of the algorithm will allow users to host events and will provide that user with the best available time slots for the users in that group with regard to the event.
     - The more advanced implemenentation of the algorithm adds in the functionality of priorities that will allow posted events to replace events of lower priority when the algorithm is run. This helps when finding a time slot for mandatory events as opposed to events that can be missed by users.
     - The final piece will be to work on the front-end of the algorithm. This includes any sort of display of the best available time slots, whether it will be a list of calendars or just a list of times
-- GOAL 2: Readjust database schema for more effective database reads 
-    - The current schema can be found in db/schema.rb. (The "events" table is not used)
-- GOAL 3: Create a better display of the group manager page.
-- GOAL 4: Add the ability for users to log out
-- GOAL 5: Automate the assignment of a time zone when a user signs up
-- GOAL 6: Add “Forgot Password?” functionality
-- GOAL 7: Logo design
-- GOAL 8: The "Do Not Disturb" tool: Adding the ability to have a user set times for when they do not wish to have events
+- GOAL 3 (March 24): Create a better display of the group manager page.
+- GOAL 4 (April 1): Add the ability for users to log out
+- GOAL 5 (April 7): Automate the assignment of a time zone when a user signs up
+- GOAL 6 (April 28): Add “Forgot Password?” functionality
+- GOAL 7 (April 28): Logo design
+- GOAL 8 (April 28): The "Do Not Disturb" tool: Adding the ability to have a user set times for when they do not wish to have events
 
 ### Current Bugs
 - Inability to sync project with Google Calendar because of an unresolved error
@@ -42,6 +42,8 @@ HTML, CSS (SASS), Javascript (CoffeeScript), Ruby on Rails
 ### Other repositories:
 
 https://github.com/WhenIsBest/simple_calendar
+
+In order to receive the most recent updates to the simple_calendar code, one should copy and paste the code from the files in hte simple_calendar repo (look at the most recent commits) into their own files. If you can find a way to just pull from the repo instead, please let us know since it has not been working thus far.
 
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
