@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
-    
-    serialize :group_ids, Array
-    
+        
     def show
       @user = User.find(params[:id])
     end
