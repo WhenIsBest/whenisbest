@@ -43,13 +43,19 @@
                 <%= f.text_area :description %>
               </p>
 
-
             <div>
               <h3>Current members</h3>
                 <% @group.group_members.each do |member| %>
-                    <strong><%= member.first_name %>
-                    <%= member.last_name %></strong>
-                    <%= member.email %><br>
+                    <% if not member.kind_of?(User) %>
+                      <% group_member = User.find(member) %>
+                    <% else %>
+                      <% group_member = member %>
+                    <% end %>
+                    
+                    <strong><%= group_member.first_name %>
+                    <%= group_member.last_name %></strong>
+                    <%= group_member.email %><br>
+                        
                 <% end %>
             </div>
 
