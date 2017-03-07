@@ -27,6 +27,7 @@
             <% if params[:group] %>
                 <%= render 'form_group' %>
             <% else %>
+                <%= params[:group] %>
                 <%= render 'form' %> 
             <% end %>
             <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
