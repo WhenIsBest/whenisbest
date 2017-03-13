@@ -1,5 +1,84 @@
-<h1>Edit Group</h1>
+<div class="header">
+    <div id="left">
+        <h1>WhenIsBest</h1>
+        <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
+        <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
+        </div>
+    <div id="right">
+        <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
+    </div>
+</div>
 
-<%= render 'form' %>
+<div class="edit-group">
+        
+    <div class="group-header">
+        <h3>Edit group <%= @group.name %></h3>
+        <button id="white-button"><%= link_to 'Cancel', group_path %></button>
+    </div>
+    
+    <div class="group-body">
+        <%= form_for @group do |f| %>
 
-<%= link_to 'Back', welcome_homepage_path %>
+            <% if @group.errors.any? %>
+                <div id="error_explanation">
+                  <h2>
+                    <%= pluralize(@group.errors.count, "error") %> prohibited
+                    this group from being saved:
+                  </h2>
+                  <ul>
+                    <% @group.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <p>
+                <%= f.label :name %><br>
+                <%= f.text_field :name %>
+              </p>
+
+              <p>
+                <%= f.label :description %><br>
+                <%= f.text_area :description %>
+              </p>
+
+            <div>
+              <h3>Current members</h3>
+                <% @group.group_members.each do |member| %>
+                    <% if not member.kind_of?(User) %>
+                      <% group_member = User.find(member) %>
+                    <% else %>
+                      <% group_member = member %>
+                    <% end %>
+                    
+                    <strong><%= group_member.first_name %>
+                    <%= group_member.last_name %></strong>
+                    <%= group_member.email %><br>
+                        
+                <% end %>
+            </div>
+
+              <p>
+                <h3>Add new group members</h3>
+                <div id="member_choices">
+                    <%= render 'member_choice' %>
+                </div>
+
+              </p>
+
+              <a href="javascript:;" id="addNewMember">Add New Member</a>
+
+              <p>
+                <%= f.submit %>
+              </p>
+
+        <% end %>
+
+            <div style="display: none;" id="new_member_form">
+                <%= render partial: "member_choice", locals: {group: false} %>
+            </div>
+    
+    </div>
+    
+</div>

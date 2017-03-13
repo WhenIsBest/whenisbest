@@ -1,12 +1,19 @@
 Rails.application.routes.draw do
     
+  resource :statics, :only => [:show, :new, :create]
+
   get 'calendar/show'
   resource :calendar, only: [:show], controller: :calendar
   #root to: "calendar#show"
+    
+  get 'calendar_events/group_new'
+  get 'pages/new'
 
   resources :groups
   resources :events
   resources :calendar_events
+  resources :users  
+  resources :pages
     
   get 'onboarding/new'
 

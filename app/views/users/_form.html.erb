@@ -1,0 +1,43 @@
+<%= form_for @user do |f| %>
+ 
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <p> <%= f.label "First Name" %><br>
+      <%= f.text_field :first_name %>
+  </p>
+
+  <p>
+      <%= f.label "Last Name" %><br>
+      <%= f.text_field :last_name %>
+  </p>
+ 
+  <p>
+      <%= f.label "Email" %><br>
+      <%= f.text_field :email %>
+  </p>
+
+  <p>
+      <button>Change Password</button>
+  </p>
+
+  <p>
+      <%= f.time_zone_select :time_zone, nil, {:include_blank => false} %>
+  </p>
+
+  <p>
+    <%= f.submit "Submit New Settings"%>
+  </p>
+ 
+<% end %>
