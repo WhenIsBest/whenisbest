@@ -14,29 +14,37 @@ Table of contents:
 
 This is the first page you see when you go to localhost:3000 on your webbrowser. Currently users must have an account. Two buttons exist: You can either **login** (for existing users) or **sign-up** to create a new account.
 
-Code: app/views/onboarding/new.html.erb and app/assets/stylesheets/onboarding.css.
+Front-end code: app/views/onboarding/new.html.erb and app/assets/stylesheets/onboarding.css.
 
 ##Login page
 ![screenshot 195](https://cloud.githubusercontent.com/assets/16448052/23841864/be4165ba-0786-11e7-910e-db27c90b2364.png)
 
 Standard login page. To login, a user needs to know email and password. Has a link that sends to sign-up page in case the user clicked the wrong button. Page will direct to homepage after logging in. 
 
-Code: app/views/sessions/new.html.erb.
+Front-end code: app/views/sessions/new.html.erb.
 
-**Known Issue(s)**:
-* Page doesn't have CSS code yet.
+**Known bugs/issue(s)**:
+* Page doesn't have stylized HTML and CSS code yet.
 * When a user logs in with wrong email or password, the page doesn't do anything. So a user would have to refresh the page to re-enter their email and password.
 * Don't have a "forgot password" link, where ideally we would send an email to the user to reset password. 
 
-**Github open issues:** [#22](https://github.com/WhenIsBest/whenisbest/issues/22)
+**Github open issues:** [#72](https://github.com/WhenIsBest/whenisbest/issues/72) [#22](https://github.com/WhenIsBest/whenisbest/issues/22)
 
 ##Sign-up page
 ![screenshot 196](https://cloud.githubusercontent.com/assets/16448052/23842794/465c7ff6-078d-11e7-8e2c-5f2ff3237890.png)
 
-Code:
+To sign up a user would need first name, last name, a valid email address, password, and the timezone they would like their calendar to be in. The email address entered must have the character '@' or else a pop-up would show up asking the user to add the character in. If the user doesn't enter a password, the page will refresh to the same page, but no error message is given.
 
-**Known Issue(s)**:
+Front-end code: app/views/users/new/html.erb.
 
-**Github open issues:**
+**Known bugs/issue(s)**:
+* Page doesn't have stylized HTML and CSS code yet.
+* A user is allowed to have the first name AND/OR the last name fields to sign up for an account, resulting in the '' (empty string) as their first and/or last name.
+* Needs to have error message when password field is empty or have too many characters.
+* Should verify user by email.
+* Would be ideal if the user doesn't have to choose the timezone themselves.
+
+**Github open issues:** [#73](https://github.com/WhenIsBest/whenisbest/issues/73) [#22](https://github.com/WhenIsBest/whenisbest/issues/22)
 
 ##Homepage
+![screenshot 197](https://cloud.githubusercontent.com/assets/16448052/23875164/d1d1b480-080e-11e7-98f4-23b4a87fc206.png)
