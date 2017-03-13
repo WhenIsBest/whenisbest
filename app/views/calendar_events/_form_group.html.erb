@@ -39,9 +39,7 @@
 <% group_id = params["format"] %>
 <% group = Group.find(group_id) %>
 <% events = get_group_events(group) %>  
-<% events.each do |event| %>
-  <%= event.name %>
-<% end %>
+
 
 
 <% end %>

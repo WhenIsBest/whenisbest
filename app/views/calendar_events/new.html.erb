@@ -1,15 +1,6 @@
 <body>
-    
-    <div class="header">
-        <div id="left">
-            <h1>WhenIsBest</h1>
-            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-            <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', login_path %>.</p>
-        </div>
-        <div id="right">
-            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
-        </div>
-    </div>
+  
+    <%= render "welcome/header" %>
     
     <div class="create-event">
         <div class="event-header">
@@ -25,11 +16,13 @@
             
             <p>
             <% if params[:format] %>
-                <%= render 'form_group' %>
+              <%= render 'form_group' %>
+              <button id="white-button"><%= link_to 'Cancel', group_path(params[:format]) %></button></p>
             <% else %>
-                <%= render 'form' %> 
+              <%= render 'form' %> 
+              <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
             <% end %>
-            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
+            
             
         </div>
     </div>

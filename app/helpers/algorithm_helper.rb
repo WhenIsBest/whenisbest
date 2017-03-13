@@ -11,8 +11,6 @@ module AlgorithmHelper
       
       event_time = Time.new(event.year.to_i,month,event.day.to_i)
       
-      puts event.name
-      puts event_time > Time.current
       return event_time > Time.current
     end
 
