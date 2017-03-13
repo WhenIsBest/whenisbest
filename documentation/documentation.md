@@ -1,4 +1,4 @@
-##whenisbest
+#whenisbest
 
 ![whenisbest logo](/rsz_whenisbest_-_logo.png)
 
@@ -9,7 +9,7 @@ The goal of whenisbest is to facilitate group scheduling based on the members' (
 
 Check out our project page on [rcos.io](rcos.io): [https://rcos.io/projects/whenisbest/whenisbest/profile](https://rcos.io/projects/whenisbest/whenisbest/profile) where you can see our proposal for the semester.
 
-##Tools used
+##Tools used and how to run the program
 
 whenisbest uses [Ruby on rails](http://rubyonrails.org/) which includes HTML, CSS/SASS, JavaScript/CoffeeScript for the front-end.
 We've used this ruby on rails [tutorial](http://guides.rubyonrails.org/getting_started.html) to get started. If you've never used ruby on rails before and would like to try out the whenisbest source code this tutorial should provide the how-tos for all the installation you need. 
@@ -19,4 +19,8 @@ You should be greeted by this page when you run whenisbest:
 
 Once you have ruby on rails set up, you should be able to run bin/rails server (ruby bin\rails server for windows) and go to localhost:3000 on your webrowser to run\use whenisbest. If you want to edit the source code, you should be able to use just any code text editor. 
 
-whenisbest has only been tested on the windows operating system. Our team members use Ruby version 2.2 OR 2.3 with Rails version 5. 
+whenisbest has only been tested on the windows operating system. Our team members use Ruby version 2.2 OR 2.3 with Rails version 5.
+
+Here is a quick video demo we have for our presentation in the Fall 2016 semester:
+
+[![whenisbest demo](https://cloud.githubusercontent.com/assets/16448052/23838214/9e9746ac-0769-11e7-8ef3-c571ab0feef3.png)](https://www.youtube.com/watch?v=io-i1woZy-0)
