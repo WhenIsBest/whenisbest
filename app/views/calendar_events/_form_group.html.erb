@@ -24,12 +24,12 @@
   <p>Please give a date range of possible days you wish to have your event.</p>
   <p>
       <%= f.label "Start Date:" %><br>
-      <%= f.date_select :date, :default => Time.now%>
+      <%= f.date_select :date, :default => Time.current%>
   </p>
 
   <p>
       <%= f.label "End Date:" %><br>
-      <%= f.date_select :date, :default => Time.now%>
+      <%= f.date_select :date, :default => Time.current%>
   </p>
 
 <p>

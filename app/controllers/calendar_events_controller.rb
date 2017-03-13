@@ -1,5 +1,6 @@
 class CalendarEventsController < ApplicationController
-    
+    require 'months_conversion_helper.rb'
+  
     def index
       @calendar_events = CalendarEvent.all
     end
@@ -28,9 +29,9 @@ class CalendarEventsController < ApplicationController
       month = calendar_event_params["date(2i)"]
       day = calendar_event_params["date(3i)"] 
         
-      months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"}
+#      months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"}
         
-      @calendar_event.month = months[month.to_i]
+      @calendar_event.month = get_month(months[month.to_i])
       @calendar_event.day = day
       @calendar_event.year = year 
         
