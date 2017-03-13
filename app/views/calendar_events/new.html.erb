@@ -13,7 +13,7 @@
     
     <div class="create-event">
         <div class="event-header">
-            <h3><% if params[:group] %>
+            <h3><% if params[:format] %>
                 Suggest a new group event
             <% else %>
                 Create a new event
@@ -24,7 +24,7 @@
         <div class="event-body">
             
             <p>
-            <% if params[:group] %>
+            <% if params[:format] %>
                 <%= render 'form_group' %>
             <% else %>
                 <%= render 'form' %> 
