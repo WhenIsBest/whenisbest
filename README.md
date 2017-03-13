@@ -55,5 +55,6 @@ If you cannot see the front end, these instructions may work:
     4. Type 'bundle update coffee-script-source' and press ENTER.
     5. Close your terminal and open a new one.
     6. Start the server.
+Source: http://stackoverflow.com/questions/28312460/object-doesnt-support-this-property-or-method-rails-windows-64bit
 
 WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
