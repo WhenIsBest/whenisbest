@@ -48,3 +48,11 @@ Front-end code: app/views/users/new/html.erb.
 
 ##Homepage
 ![screenshot 197](https://cloud.githubusercontent.com/assets/16448052/23875164/d1d1b480-080e-11e7-98f4-23b4a87fc206.png)
+
+Homepage for the user. Has a sidebar div and a calendar div. The sidebar displays the user's clickable groups (which will lead to group's page) and has buttons to create a new group and to manage all the groups. The calendar side of the page contains the calendar display, which shows the user's calendar and his/her events on it. The calendar currently only displays one week at a time; the default is the current week. A user can look at the previous week or the next week using the provided buttons. Each day on the calendar displays the fill 24 hours. There's also a button to add a new calendar event *for the user*. On the upper right on the header bar (which is common to all of the pages) that has the user settings button.
+
+Front-end code: app/views/welcome/homepage.html.erb.
+
+**Known bugs/issues(s)**:
+
+**Github open issues:**
