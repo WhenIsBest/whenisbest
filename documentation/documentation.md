@@ -1,4 +1,4 @@
-#whenisbest
+# whenisbest
 
 ![whenisbest logo](/rsz_whenisbest_-_logo.png)
 
@@ -9,7 +9,7 @@ The goal of whenisbest is to facilitate group scheduling based on the members' (
 
 Check out our project page on [rcos.io](rcos.io): [https://rcos.io/projects/whenisbest/whenisbest/profile](https://rcos.io/projects/whenisbest/whenisbest/profile) where you can see our proposal for the semester.
 
-##Tools used and how to run the program
+## Tools used and how to run the program
 
 whenisbest uses [Ruby on rails](http://rubyonrails.org/) which includes HTML, CSS/SASS, JavaScript/CoffeeScript for the front-end.
 We've used this ruby on rails [tutorial](http://guides.rubyonrails.org/getting_started.html) to get started. If you've never used ruby on rails before and would like to try out the whenisbest source code this tutorial should provide the how-tos for all the installations you need. 
@@ -50,7 +50,7 @@ If that still doesn't work, follow these instructions:
 1. Close your terminal and open a new one.
 1. Start the server. Source: http://stackoverflow.com/questions/28312460/object-doesnt-support-this-property-or-method-rails-windows-64bit
 
-####Calendar
+#### Calendar
 Another github repo is used to create our calendar: [https://github.com/WhenIsBest/simple_calendar] (https://github.com/WhenIsBest/simple_calendar).
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
