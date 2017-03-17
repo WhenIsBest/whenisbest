@@ -47,5 +47,14 @@ In order to receive the most recent updates to the simple_calendar code, one sho
 
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
+### Notes:
+If you cannot see the front end, these instructions may work:
+    1. Go to the whenisbest directory and open Gemfile in a text editor.
+    2. Add "gem 'coffee-script-source', '1.8.0'" to Gemfile and save.
+    3. Open your terminal and navigate to the whenisbest directory
+    4. Type 'bundle update coffee-script-source' and press ENTER.
+    5. Close your terminal and open a new one.
+    6. Start the server.
+Source: http://stackoverflow.com/questions/28312460/object-doesnt-support-this-property-or-method-rails-windows-64bit
 
 WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
