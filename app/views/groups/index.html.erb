@@ -15,8 +15,35 @@
 
           <% @groups.each do |group| %>
 
+<<<<<<< HEAD
             <% if not current_user.group_ids.include? group.id %>
               <% next %>
+=======
+  <% @groups.each do |group| %>
+    
+    <% if not current_user.group_ids.include? group.id %>
+      <% next %>
+    <% end %>
+    <tr>
+      <td><%= group.name %></td>
+      <td><%= group.description %></td>
+      <td>
+        
+        <% if group.group_members != nil %>
+            <% group.group_members.each do |member| %>
+                <div class="group-members-item">
+                    <p>
+                        <% if member.kind_of?(User) %>
+                          <% user = member %>
+                        <% else %>
+                          <% user = User.find(member) %>
+                        <% end %>
+                        <%= user.first_name %>
+                        <%= user.last_name %>
+                        ( <%= user.email %> )
+                    </p>
+                </div>
+>>>>>>> refs/remotes/origin/master
             <% end %>
             <tr>
               <td><%= group.name %></td>
