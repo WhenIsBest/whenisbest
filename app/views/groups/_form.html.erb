@@ -13,29 +13,29 @@
       </ul>
     </div>
   <% end %>
- 
-  <p>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </p>
- 
-  <p>
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </p>
- 
-  <p>
-    <h3>Add group members</h3>
-    <div id="member_choices">
-        <%= render 'member_choice' %>
-    </div>
+  <div>
+      <p>
+        <%= f.label :name %><br>
+        <%= f.text_field :name %>
+      </p>
 
-  </p>
+      <p>
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+      </p>
 
-  <a href="javascript:;" id="addNewMember">Add New Member</a>
+      <p>
+        <h3>Add group members</h3>
+        <div id="member_choices">
+            <%= render 'member_choice' %>
+        </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
- 
+      </p>
+
+      <a href="javascript:;" id="addNewMember">Add New Member</a>
+
+      <p>
+        <%= f.submit %>
+      </p>
+  </div>
 <% end %>
