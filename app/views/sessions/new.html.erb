@@ -1,9 +1,36 @@
-<h1>Login</h1>
-<%=form_for(:session, url: login_path) do |f| %>
-    <%= f.email_field :email, :placeholder => "Email" %>
-    <%= f.password_field :password, :placeholder => "Password" %>
-    <%= f.submit "Log in", class: "btn-submit" %>
-<% end %>
-<p>
-<%= link_to 'New User?', signup_path %>
-</p>
+<html>
+<body> 
+    <div class="header">
+        <div class="center">
+            <div class="login_header">
+                <h1 id="header_color">Login</h1> 
+            </div>
+            
+        </div>
+           
+    </div>
+    <div class="login_content">
+        <div class="center">
+            <div>
+             <img src="https://raw.githubusercontent.com/WhenIsBest/whenisbest/master/rsz_whenisbest_-_logo.png" />
+            </div>
+            <%=form_for(:session, url: login_path) do |f| %>
+            <p><%= f.email_field :email, :placeholder => "Email" %></p>
+            <p> <%= f.password_field :password, :placeholder => "Password" %></p>
+           
+            
+            
+            <p><%= f.submit "Log in", class: "btn-submit" %>
+                
+            </p>
+            <p>
+                <%= link_to 'New User?', signup_path %>
+            </p>
+            <% end %>
+            
+        </div>  
+    </div>
+</body>
+</html>
+
+
