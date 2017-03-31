@@ -1,0 +1,1 @@
+json.array! @time_slots_lists, partial: 'time_slots_lists/time_slots_list', as: :time_slots_list

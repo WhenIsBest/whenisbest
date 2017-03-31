@@ -47,7 +47,6 @@ module AlgorithmHelper
     
       event_set = Set.new
       
-      
       group.group_members.each do |user|
         user_events = []
         if user.kind_of?(User)

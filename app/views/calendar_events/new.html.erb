@@ -16,7 +16,10 @@
             
             <p>
             <% if params[:format] %>
-              <%= render 'form_group' %>
+              <% @slots = ["1", "2"] %>
+              <%= render 'calendar_events/form_group', :@slot_list => TimeSlotsList.new, :@slot_lists =>  TimeSlotsList.all %>
+<!--              <%= render "calendar_events/slots", :locals => {:@time_slots => "1"} %>-->
+             
               <button id="white-button"><%= link_to 'Cancel', group_path(params[:format]) %></button></p>
             <% else %>
               <%= render 'form' %> 

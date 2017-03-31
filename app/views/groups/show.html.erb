@@ -31,7 +31,6 @@
                                         <% user = User.find(member) %>
                                         <%= user.first_name %>
                                         <%= user.last_name %>
-                                        <%= user.id %>
                                         ( <%= user.email %> )
                                     </p>
                                 </div>
@@ -47,7 +46,9 @@
             <div class="calendar-header" style="background-color:#44af61">
                 <h3><%= @group.name %>'s calendar</h3>
                 
-                <%= link_to"Suggest an event", new_calendar_event_path(@group) %>
+              <div id="white-button">
+                <%= link_to "Suggest an event", new_calendar_event_path(@group) %>
+              </div>
             </div>
             <div class="calendar-body">
                 <%= week_calendar do |date| %>

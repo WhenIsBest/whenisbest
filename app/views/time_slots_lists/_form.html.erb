@@ -1,0 +1,32 @@
+<%= form_for(time_slots_list) do |f| %>
+  <% if time_slots_list.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(time_slots_list.errors.count, "error") %> prohibited this time_slots_list from being saved:</h2>
+
+      <ul>
+      <% time_slots_list.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_date %>
+    <%= f.date_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %>
+    <%= f.date_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :duration %>
+    <%= f.number_field :duration %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

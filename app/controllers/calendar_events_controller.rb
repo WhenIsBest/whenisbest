@@ -16,6 +16,11 @@ class CalendarEventsController < ApplicationController
     def group_new
         @calendar_event = CalendarEvent.group_new(:group => group)
     end
+  
+    def form_group
+      
+      @slot_list = TimeSlotList.new
+    end
     
     def edit
       @calendar_event = CalendarEvent.find(params[:id])
@@ -28,8 +33,6 @@ class CalendarEventsController < ApplicationController
       year = calendar_event_params["date(1i)"]
       month = calendar_event_params["date(2i)"]
       day = calendar_event_params["date(3i)"] 
-        
-#      months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"}
         
       @calendar_event.month = get_month(months[month.to_i])
       @calendar_event.day = day
@@ -51,7 +54,7 @@ class CalendarEventsController < ApplicationController
       
       if @calendar_event.save!
 #        redirect_to @calendar_event
-          redirect_to '/welcome/homepage'
+        redirect_to '/welcome/homepage'
       else
         render 'new'
       end
@@ -75,6 +78,9 @@ class CalendarEventsController < ApplicationController
       redirect_to calendar_events_path
     end   
     
+    def slots
+      
+    end
 
     private
       def calendar_event_params

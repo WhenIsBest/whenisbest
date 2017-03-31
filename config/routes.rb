@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  resources :time_slots_lists
   resource :statics, :only => [:show, :new, :create]
 
   get 'calendar/show'
