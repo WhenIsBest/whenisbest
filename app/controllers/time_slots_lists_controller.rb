@@ -1,10 +1,11 @@
 class TimeSlotsListsController < ApplicationController
-  before_action :set_time_slots_list, only: [:show, :edit, :update, :destroy]
+  before_action :set_time_slots_list, only: [:show, :edit, :update, :destroy, :index]
 
   # GET /time_slots_lists
   # GET /time_slots_lists.json
   def index
     @time_slots_lists = TimeSlotsList.all
+    @time_slots_list = TimeSlotsList.new
   end
 
   # GET /time_slots_lists/1
@@ -28,8 +29,8 @@ class TimeSlotsListsController < ApplicationController
 
     respond_to do |format|
       if @time_slots_list.save
-        format.html { redirect_to @time_slots_list, notice: 'Time slots list was successfully created.' }
-        format.json { render :show, status: :created, location: @time_slots_list }
+        format.html { redirect_to @time_slots_list }
+        format.json { render :index, status: :created, location: @time_slots_list }
         format.js
       else
         format.html { render :new }
@@ -58,7 +59,7 @@ class TimeSlotsListsController < ApplicationController
   def destroy
     @time_slots_list.destroy
     respond_to do |format|
-      format.html { redirect_to time_slots_lists_url, notice: 'Time slots list was successfully destroyed.' }
+      format.html { redirect_to time_slots_lists_url }
       format.json { head :no_content }
     end
   end
@@ -66,7 +67,13 @@ class TimeSlotsListsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_time_slots_list
-      @time_slots_list = TimeSlotsList.find(params[:id])
+      last_slot = TimeSlotsList.last
+      while last_slot
+        TimeSlotsList.last.destroy
+        last_slot = TimeSlotsList.last
+      end
+      @time_slots_list = TimeSlotsList.new
+      @time_slots_list.save!
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

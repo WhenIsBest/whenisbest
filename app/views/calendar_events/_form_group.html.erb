@@ -46,46 +46,55 @@
 <% events = get_group_events(group) %> 
 
 <div id="time_slots">
- 
-</div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  Give Me Time Slots!
-</button>
+  </div>
+  <div class="container">
+  <div class="row">
+    <div class="text-center">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Give Me Time Slots!
+      </button>
+    </div>
+  </div>
 
-<%= render @slot_lists %>
+  <div class="row" id="container_posts">
+    <%= render @slot_lists %>
+  </div>
 
-<!-- Modal -->
-<%= form_for(@slot_list, remote: true) do |f| %>
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Time Slots</h4>
-        </div>
-        
-        <div class="modal-body">
-          <div class="field">
-            <%= f.label "Start Date" %>
-            <%= f.text_area :start_date, class: "form-control date_start" %>
+  <!-- Modal -->
+  <%= form_for(@slot_list) do |f| %>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Time Slots</h4>
           </div>
-          <div class="field">
-            <%= f.label "End Date" %>
-            <%= f.text_area :end_date, class: "form-control date_end" %>
+
+          <div class="modal-body">
+            <div class="field">
+              <%= f.label "Start Date" %>
+              <%= f.text_area :start_date, class: "form-control date_start" %>
+            </div>
+            <div class="field">
+              <%= f.label "End Date" %>
+              <%= f.text_area :end_date, class: "form-control date_end" %>
+            </div>
           </div>
-        </div>
-        
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">Close</button>
-          <%= submit_tag "Save changes", class: "btn btn-primary" %>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpostclose">Close</button>
+
+            <%= submit_tag "Create", class: "btn btn-primary" %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+  
+</div>
 
 <!--<a href="javascript:;" id="printTimeSlots">Give Me Time Slots!</a>-->
 

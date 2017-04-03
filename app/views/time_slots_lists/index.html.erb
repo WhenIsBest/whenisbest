@@ -1,31 +1,57 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<h1>Time Slots Lists</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Duration</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @time_slots_lists.each do |time_slots_list| %>
-      <tr>
-        <td><%= time_slots_list.start_date %></td>
-        <td><%= time_slots_list.end_date %></td>
-        <td><%= time_slots_list.duration %></td>
-        <td><%= link_to 'Show', time_slots_list %></td>
-        <td><%= link_to 'Edit', edit_time_slots_list_path(time_slots_list) %></td>
-        <td><%= link_to 'Destroy', time_slots_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<!-- Button trigger modal -->
+<div class="row">
+  <div class="text-center">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Get Time Slots!
+    </button>
+  </div>
+</div>
 
 <br>
-
-<%= link_to 'New Time Slots List', new_time_slots_list_path %>
+<br>
+  
+<div class="row" id="container_time_slots_list">
+  <%= render TimeSlotsList.all %>
+</div>
+  
+<!-- Modal -->
+<%= form_for (@time_slots_list) do |f| %>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Time Slots</h4>
+        </div>
+        
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :event_name %><br>
+            <%= f.text_area :event_name, class: "form-control name" %>
+          </div>
+          <div class="field">
+            <%= f.label :start_date %><br>
+            <%= f.text_area :start_date, class: "form-control date_start" %>
+          </div>
+          <div class="field">
+            <%= f.label :end_date %><br>
+            <%= f.text_area :end_date, class: "form-control date_end" %>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          
+          <%= submit_tag "Create", class: "btn btn-primary" %>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<% end %>
+  
+  
+</div>
