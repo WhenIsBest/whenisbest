@@ -47,7 +47,7 @@
                 <h3><%= @group.name %>'s calendar</h3>
                 
               <div id="white-button">
-                <%= link_to "Suggest an event", "/time_slots_lists/" %>
+                <%= link_to "Suggest an event", time_slots_lists_path(:group => @group.id) %>
               </div>
             </div>
             <div class="calendar-body">

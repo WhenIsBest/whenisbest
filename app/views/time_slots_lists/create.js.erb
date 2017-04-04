@@ -1,1 +1,10 @@
-alert("This worked");
+$("#container_time_slots_list").empty();
+$("#myModal").modal('hide');
+
+$(".name").val('');
+$(".date_start").val('');
+$(".date_end").val('');
+$(".duration").val('');
+
+$("#container_time_slots_list").append('<%= j render @time_slots_list, :group => 26 %>');
+$("#time_slots_list_<%= @time_slots_list.id %>").hide().fadeIn(1000);

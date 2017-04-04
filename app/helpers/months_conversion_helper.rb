@@ -4,11 +4,12 @@ module MonthsConversionHelper
   months_to_nums = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10, "November" => 11, "December" => 12}
   
   def get_month(month)
-    if month.kind_of?(String)
-      return months_to_nums[month]
+    check = event.month.to_i
+    if check == 0
+      month = get_month(event.month)
     else
-      return nums_to_months[month]
-    end
+      month = event.month
+    end   
   end
   
 end

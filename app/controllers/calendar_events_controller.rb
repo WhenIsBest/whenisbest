@@ -33,6 +33,8 @@ class CalendarEventsController < ApplicationController
       year = calendar_event_params["date(1i)"]
       month = calendar_event_params["date(2i)"]
       day = calendar_event_params["date(3i)"] 
+      
+      months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November" , "December"]
         
       @calendar_event.month = get_month(months[month.to_i])
       @calendar_event.day = day

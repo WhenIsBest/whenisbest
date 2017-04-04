@@ -1,5 +1,7 @@
 class TimeSlotsListsController < ApplicationController
   before_action :set_time_slots_list, only: [:show, :edit, :update, :destroy, :index]
+  
+  
 
   # GET /time_slots_lists
   # GET /time_slots_lists.json
@@ -73,11 +75,13 @@ class TimeSlotsListsController < ApplicationController
         last_slot = TimeSlotsList.last
       end
       @time_slots_list = TimeSlotsList.new
+      @time_slots_list.group = params[:group]
+      @group = params[:group]
       @time_slots_list.save!
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_slots_list_params
-      params.require(:time_slots_list).permit(:start_date, :end_date, :duration)
+      params.require(:time_slots_list).permit(:start_date, :end_date, :duration, :event_name, :group)
     end
 end
