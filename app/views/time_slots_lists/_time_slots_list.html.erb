@@ -3,24 +3,72 @@
 <div class="col-md-4 blog-main box text-center" id="time_slots_list_<%= time_slots_list.id %>">
   <div class="panel panel-info">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= time_slots_list.group %></h3>
+      <h3 class="panel-title"><%= time_slots_list.event_name %></h3>
     </div>
     
     <div class="panel-body">
-                              
-      <% for i in 1..9 %>
-        <div style="color: #3B82D6;"><button><%= "Monday, #{i} PM - #{i+1} PM" %></button><p></p></div>
-      <% end %>
       
       <% group_id = time_slots_list.group %>
-      <% if time_slots_list.event_name != "" and group_id %>
+      <% if time_slots_list.event_name != "" and group_id and time_slots_list.start_date %>
         
+        <% time_slots = [] %>
         <% group = Group.find(group_id) %>
+                    
+        <% start_day = time_slots_list.start_date.day %>
+        <% end_day = time_slots_list.end_date.day %>
         
-        <% events = get_group_user_events(group) %>
-      <div style="color: #3B82D6;"><button><%= "#{events.length}" %></button><p></p></div>
+        <!-- For now, assume two days are in same month and same year and days don't go to next day-->
+        <% for i in start_day..end_day %>
+          <% events = [] %>
+          
+          <% group_events = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,group_id.to_s]) %>
+          <% if group_events.kind_of?(CalendarEvent) %>
+            <% events.push(group_events) %>
+          <% end %>
+          
+      
+          <% group.group_members.each do |user| %>
+            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,user.to_s]).find_each.to_a %>
+            <% events_today.each do |event| %>
+              <% events.push(event) %>
+            <% end %>
+          <% end %>
+      
+          <% time_range = get_time_range(events) %>
+          <% hour_set = time_range.to_set %>
+          <% duration = time_slots_list.duration %>
+      
+          <% for j in 0..23 %>
+            <% subset = Set.new %>
+            <% if j + duration > 23 %>
+                <% break %>
+            <% end %>
+      
+            <% for k in j..j+(duration-1) %>
+              <% subset.add(k) %>
+            <% end %>
+            
+            <% if not subset.intersect? hour_set %>
+              <% pair = [i,j] %>
+              <% time_slots.push(pair) %>
+            <% end %>
+      
+            
+      
+          <% end %>
+          
+          
+        <% end %>
+        
+        <% time_slots.each do |slot| %>
+          <% button_name = "#{Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.month.to_s),slot[0]).strftime('%m/%d/%Y')} #{get_print_time(slot[1])} - #{get_print_time(slot[1] + duration)}" %>
+          <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.month.to_s),slot[0]).strftime('%m/%d/%Y'), :month => get_month(time_slots_list.start_date.month.to_s).to_s, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(slot[1] + duration).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(slot[1] + duration-1), :duration => duration}) %><p></p></div>
+        <% end %>
+
         
       <% end %>
+      
+      
       
       <br>
       
@@ -30,7 +78,7 @@
           Edit
         </button>
 -->
-        <%= link_to 'Destroy', time_slots_list, method: :delete, class: "btn btn-danger" %>
+        
       </div>
     </div>
     

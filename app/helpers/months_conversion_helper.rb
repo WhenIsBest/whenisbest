@@ -3,13 +3,15 @@ module MonthsConversionHelper
   
   months_to_nums = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10, "November" => 11, "December" => 12}
   
-  def get_month(month)
-    check = event.month.to_i
+  def get_month_info(month)
+    check = month.to_i
     if check == 0
-      month = get_month(event.month)
+      result = months_to_nums[month]
     else
-      month = event.month
+      result = check
     end   
+    
+    return result
   end
   
 end

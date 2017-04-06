@@ -110,13 +110,16 @@ class GroupsController < ApplicationController
            else
                user = User.find(member)
            end
+            
+           if user and user.group_ids
+             user.group_ids.delete(@group.id)
+           end
        end
           
-       user.group_ids.delete(@group.id)
+       
 
       end
-      session[:group_id] = nil
-      reset_session
+      
       @group.destroy
 
       redirect_to groups_path

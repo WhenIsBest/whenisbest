@@ -1,20 +1,23 @@
 module AlgorithmHelper
     require 'set'
-    require 'months_conversion_helper.rb'
   
     # Check whether event is in the future
     def in_future(event)
+      
       check = event.month.to_i
       if check == 0
         month = get_month(event.month)
       else
-        month = event.month
+        month = check
+      end
+      
+      if event.year.to_i == 0 or month.to_i == 0 or event.day.to_i == 0
+        return false
       end
       
       event_time = Time.new(event.year.to_i,month.to_i,event.day.to_i)
-#      event_t/ime = Time.new(2017,6,5)
       
-      return event_time > Time.current
+      return event_time >= Time.current.beginning_of_day
     end
 
     # Gets all (past and/or future) events of inputted user
@@ -72,7 +75,6 @@ module AlgorithmHelper
         event_set.merge(user_events)
       
       end
-      
       return event_set
     end
   

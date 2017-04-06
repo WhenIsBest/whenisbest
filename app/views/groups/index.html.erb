@@ -9,7 +9,7 @@
 
   <% @groups.each do |group| %>
     
-    <% if not current_user.group_ids.include? group.id %>
+    <% if not current_user.group_ids.include? group.id and not current_user.group_ids.include? group.id.to_s %>
       <% next %>
     <% end %>
     <tr>
