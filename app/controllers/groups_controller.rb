@@ -120,6 +120,7 @@ class GroupsController < ApplicationController
 
       end
       
+
       @group.destroy
 
       redirect_to groups_path
