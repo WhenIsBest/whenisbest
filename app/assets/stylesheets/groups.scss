@@ -2,6 +2,51 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// added by erin for consistency//////////////////////////////////
+
+.g_header {
+    background-color: white;
+    width: 100%;
+    height: 60px;
+    margin: 0px auto;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    box-shadow: 1px 0px 1px pink; /*#888888;*/
+
+}
+/* h1 specicific seetings wont appear*/
+ .g_center{
+        color:darkgreen;
+        margin-left: auto;
+        margin-right: auto;
+        width: 7em;
+    
+    /* h1 {
+         width: 6em ;
+     
+     }
+     h2 {
+     
+         width: 8em ;
+     }*/
+ }
+.gtable{
+    margin-left: auto;
+    margin-right: auto;
+    table {
+        border-collapse: collapse;
+    }
+    table,th,td {
+        border: 2px solid grey ;
+    }
+    th,td{
+        background-color: white;
+        vertical-align: middle;   
+    }
+
+}
+
 .hello {
     color: crimson;
 }
@@ -44,14 +89,14 @@
     
 }
 
-.create-group,.edit-group {
+.create-group,.edit-group,.manage-group {
     
     margin-top: 70px;
     background-color: white;
     width: 100%;
     
     .group-header {
-        background-color: #5938bc;
+        background-color: darkgreen;
         top: 0px; 
         padding: 7px;
         padding-top: 3px;
@@ -63,6 +108,21 @@
         bottom: 0px;
         color: white;
     }
+    
+    .group-header2 {
+        background-color:darkgreen ;
+        top: 0px; 
+        padding: 7px;
+        padding-top: 3px;
+        padding-right: 0px;
+        box-shadow: 1px 0px 1px #888888;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+        margin-bottom: 0px;
+        bottom: 0px;
+        color: white;
+    }
+
 
     .group-body {
         height: 550px;

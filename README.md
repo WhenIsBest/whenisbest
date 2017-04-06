@@ -21,7 +21,7 @@ HTML, CSS (SASS), Javascript (CoffeeScript), Ruby on Rails
     - The current schema can be found in db/schema.rb. (The "events" table is not used)
 - GOAL 2 (March 10): Begin implementation of algorithm to automate scheduling for meetings/events
     - The basic implementation of the algorithm will allow users to host events and will provide that user with the best available time slots for the users in that group with regard to the event.
-    - The more advanced implemenentation of the algorithm adds in the functionality of priorities that will allow posted events to replace events of lower priority when the algorithm is run. This helps when finding a time slot for mandatory events as opposed to events that can be missed by users.
+    - The more advanced implementation of the algorithm adds in the functionality of priorities that will allow posted events to replace events of lower priority when the algorithm is run. This helps when finding a time slot for mandatory events as opposed to events that can be missed by users.
     - The final piece will be to work on the front-end of the algorithm. This includes any sort of display of the best available time slots, whether it will be a list of calendars or just a list of times
 - GOAL 3 (March 24): Create a better display of the group manager page.
 - GOAL 4 (April 1): Add the ability for users to log out
@@ -47,5 +47,14 @@ In order to receive the most recent updates to the simple_calendar code, one sho
 
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
+### Notes:
+If you cannot see the front end, these instructions may work:
+    1. Go to the whenisbest directory and open Gemfile in a text editor.
+    2. Add "gem 'coffee-script-source', '1.8.0'" to Gemfile and save.
+    3. Open your terminal and navigate to the whenisbest directory
+    4. Type 'bundle update coffee-script-source' and press ENTER.
+    5. Close your terminal and open a new one.
+    6. Start the server.
+Source: http://stackoverflow.com/questions/28312460/object-doesnt-support-this-property-or-method-rails-windows-64bit
 
 WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
