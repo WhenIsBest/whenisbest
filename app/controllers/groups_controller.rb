@@ -110,13 +110,16 @@ class GroupsController < ApplicationController
            else
                user = User.find(member)
            end
-           if user
+            
+           if user and user.group_ids
              user.group_ids.delete(@group.id)
            end
        end
-        
+          
+       
 
       end
+      
 
       @group.destroy
 

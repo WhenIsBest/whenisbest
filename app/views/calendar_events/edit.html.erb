@@ -1,25 +1,17 @@
 <body>
     
-    <div class="header">
-        <div id="left">
-            <h1>WhenIsBest</h1>
-            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-            <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
-            <p id="logout"> <%= link_to 'Log out', root_path %>.</p>
-        </div>
-        <div id="right">
-            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
-        </div>
-    </div>
+    <%= render "welcome/header" %>
 
     <div class="edit-event">
         <div class="event-header">
             <h3>Edit Event</h3>
             <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
+            <button id="white-button"><%= link_to "Delete", @calendar_event, method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %></button>
         </div>
         
         <div class="event-body">
             <%= render 'form2' %>
         </div>
+    
     </div>
 </body>

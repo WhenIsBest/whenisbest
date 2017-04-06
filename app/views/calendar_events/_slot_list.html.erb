@@ -1,0 +1,21 @@
+<div class="col-md-4 blog-main box text-center" id="slot_list_<%= @slot_list.id %>">
+  <div class="panel panel-info">
+
+    <div class="panel-heading">
+      <h3 class="panel-title">Title</h3>
+      <p>Content</p>
+    </div>
+
+    <div class="panel-body">
+      <div style="color: #38B2D6;">Time ago</div>
+      <br>
+
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatelist_<%= @slot_list.id %>">
+          Edit
+        </button>
+        <%= link_to 'Destroy', @slot_list, method: :delete, class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>

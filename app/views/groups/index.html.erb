@@ -27,40 +27,47 @@
                 <% if not current_user.group_ids.include? group.id %>
                   <% next %>
 
-                <% end %>
-                <tr>
-                  <td><%= group.name %></td>
-                  <td><%= group.description %></td>
-                  <td>
-                    <% if group.group_members != nil %>
-                        <% group.group_members.each do |member| %>
-                            <div class="group-members-item">
-                                <p>
-                                    <% if member.kind_of?(User) %>
-                                      <% user = member %>
-                                    <% else %>
-                                      <% user = User.find(member) %>
-                                    <% end %>
-                                    <%= user.first_name %>
-                                    <%= user.last_name %>
-                                    ( <%= user.email %> )
-                                </p>
-                            </div>
+  <% @groups.each do |group| %>
+    
+    <% if not current_user.group_ids.include? group.id and not current_user.group_ids.include? group.id.to_s %>
+      <% next %>
+    <% end %>
+    <tr>
+      <td><%= group.name %></td>
+      <td><%= group.description %></td>
+      <td>
+        
+        <% if group.group_members != nil %>
+            <% group.group_members.each do |member| %>
+                <div class="group-members-item">
+                    <p>
+                        <% if member.kind_of?(User) %>
+                          <% user = member %>
+                        <% else %>
+                          <% user = User.find(member) %>
+
                         <% end %>
-                    <% end %>
-                  </td>
-                  <td><%= link_to 'Show', group_path(group) %>
-                  <%= link_to 'Edit', edit_group_path(group) %>
-                  <%= button_to 'Destroy', group_path(group),
-                          method: :delete,
-                          data: { confirm: 'Are you sure?' }%></td>
-                </tr>
-                <% end %>
-            </table>
-        </div>
+                        <%= user.first_name %>
+                        <%= user.last_name %>
+                        ( <%= user.email %> )
+                    </p>
+                </div>
+
+            <% end %>
+        <% end %>
+      </td>
+      <td><%= link_to 'Show', group_path(group) %>
+      <%= link_to 'Edit', edit_group_path(group) %>
+      <%= button_to 'Destroy', group_path(group),
+              method: :delete,
+              data: { confirm: 'Are you sure?' }%></td>
+    </tr>
+  <% end %>
+</table>
     </div>
-    <div class="content">
-        <button><%= link_to 'Back', welcome_homepage_path %></button>
-    </div>
+</div>
+<div class="content">
+    <button><%= link_to 'Back', welcome_homepage_path %></button>
+</div>
      
 </body>

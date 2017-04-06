@@ -1,0 +1,89 @@
+<div id="header">
+  <%= render "welcome/header" %>
+</div>
+<div class="container">
+
+<br>
+<br> <!-- Sorry, I'm #TeamBackend -->
+<br>
+<br>
+  
+<!-- Button trigger modal -->
+<div class="row" id="get_slots_button">
+  <div class="text-center">
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+      Get Time Slots!
+    </button>
+  </div>
+</div>
+
+<br>
+<br>
+  
+<div class="calendar" id="calendar">
+            
+    <div class="calendar-header">
+        <h3>
+          <% group_name = Group.find(@group).name %>
+          <%= group_name %>'s Calendar 
+        </h3>
+    </div>
+
+    <div class="calendar-body">
+        <%= week_calendar do |date| %>
+        <center><%= date.strftime("%b %d") %></center>
+        <% end %>
+    </div>
+
+</div>
+  
+<div class="row" id="container_time_slots_list">
+  <%= render TimeSlotsList.all %>
+</div>
+  
+<!-- Modal -->
+<%= form_for @time_slots_list, remote: true do |f| %>
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Time Slots</h4>
+        </div>
+                
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :event_name %><br>
+            <%= f.text_field :event_name, class: "form-control name" %>
+          </div>
+          <div class="field">
+            <%= f.label :start_date %><br>
+            <%= f.date_select :start_date, class: "form-control date_start" %>
+          </div>
+          <div class="field">
+            <%= f.label :end_date %><br>
+            <%= f.date_select :end_date, class: "form-control date_end" %>
+          </div>
+          <div class="field">
+            <%= f.label :duration %><br>
+            <%= f.select :duration, ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"], class: "form-control duration" %> <%= "hours" %>
+          </div>
+          <div class="field">
+            <%= f.hidden_field :group, :value => @group %>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Create", class: "btn btn-primary" %>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+<% end %>  
+
+  
+</div>
+

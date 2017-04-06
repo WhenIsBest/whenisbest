@@ -1,14 +1,5 @@
-<div class="header">
-    <div id="left">
-        <h1>WhenIsBest</h1>
-        <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-        <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
-        <p id="logout"> <%= link_to 'Log out', root_path %>.</p>
-        </div>
-    <div id="right">
-        <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
-    </div>
-</div>
+
+<%= render "welcome/header" %>
 
 <div class="edit-group">
         

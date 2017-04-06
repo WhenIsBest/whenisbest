@@ -1,20 +1,10 @@
 <body>
-    
-    <div class="header">
-        <div id="left">
-            <h1>WhenIsBest</h1>
-            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-            <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', login_path %>.</p>
-            <p id="logout"> <%= link_to 'Log out', root_path %>.</p>
-        </div>
-        <div id="right">
-            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
-        </div>
-    </div>
+  
+    <%= render "welcome/header" %>
     
     <div class="create-event">
         <div class="event-header">
-            <h3><% if params[:group] %>
+            <h3><% if params[:format] %>
                 Suggest a new group event
             <% else %>
                 Create a new event
@@ -25,12 +15,18 @@
         <div class="event-body">
             
             <p>
-            <% if params[:group] %>
-                <%= render 'form_group' %>
+            <% if params[:format] %>
+<!--              <% @slots = ["1", "2"] %>-->
+<!--              <%= render 'calendar_events/form_group', :@slot_list => TimeSlotsList.new, :@slot_lists =>  TimeSlotsList.all %>-->
+<!--              <%= render "calendar_events/slots", :locals => {:@time_slots => "1"} %>-->
+<!--              <%= render 'time_slots_lists/index' %>-->
+             
+              <button id="white-button"><%= link_to 'Cancel', group_path(params[:format]) %></button></p>
             <% else %>
-                <%= render 'form' %> 
+              <%= render 'form' %> 
+              <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
             <% end %>
-            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
+            
             
         </div>
     </div>
