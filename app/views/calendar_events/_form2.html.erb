@@ -20,7 +20,7 @@
 
   <p>
       <%= f.label "Date:" %><br>
-      <%= f.select :month, @calendar_event.months %> <%= f.select :day, @calendar_event.days %> <%= f.select :year, @calendar_event.years %>  
+      <%= f.select :month, @calendar_event.months, :selected => get_month(@calendar_event.month) %> <%= f.select :day, @calendar_event.days %> <%= f.select :year, @calendar_event.years %>  
   </p>
  
   <p>

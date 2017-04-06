@@ -1,0 +1,125 @@
+<% require 'algorithm_helper.rb' %>
+
+<div class="col-md-4 blog-main box text-center" id="time_slots_list_<%= time_slots_list.id %>">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= time_slots_list.event_name %></h3>
+    </div>
+    
+    <div class="panel-body">
+      
+      <% group_id = time_slots_list.group %>
+      <% if time_slots_list.event_name != "" and group_id and time_slots_list.start_date %>
+        
+        <% time_slots = [] %>
+        <% group = Group.find(group_id) %>
+                    
+        <% start_day = time_slots_list.start_date.day %>
+        <% end_day = time_slots_list.end_date.day %>
+        
+        <!-- For now, assume two days are in same month and same year and days don't go to next day-->
+        <% for i in start_day..end_day %>
+          <% events = [] %>
+          
+          <% group_events = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,group_id.to_s]) %>
+          <% if group_events.kind_of?(CalendarEvent) %>
+            <% events.push(group_events) %>
+          <% end %>
+          
+      
+          <% group.group_members.each do |user| %>
+            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,user.to_s]).find_each.to_a %>
+            <% events_today.each do |event| %>
+              <% events.push(event) %>
+            <% end %>
+          <% end %>
+      
+          <% time_range = get_time_range(events) %>
+          <% hour_set = time_range.to_set %>
+          <% duration = time_slots_list.duration %>
+      
+          <% for j in 0..23 %>
+            <% subset = Set.new %>
+            <% if j + duration > 23 %>
+                <% break %>
+            <% end %>
+      
+            <% for k in j..j+(duration-1) %>
+              <% subset.add(k) %>
+            <% end %>
+            
+            <% if not subset.intersect? hour_set %>
+              <% pair = [i,j] %>
+              <% time_slots.push(pair) %>
+            <% end %>
+      
+            
+      
+          <% end %>
+          
+          
+        <% end %>
+        
+        <% time_slots.each do |slot| %>
+          <% button_name = "#{Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.month.to_s),slot[0]).strftime('%m/%d/%Y')} #{get_print_time(slot[1])} - #{get_print_time(slot[1] + duration)}" %>
+          <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.month.to_s),slot[0]).strftime('%m/%d/%Y'), :month => get_month(time_slots_list.start_date.month.to_s).to_s, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(slot[1] + duration).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(slot[1] + duration-1), :duration => duration}) %><p></p></div>
+        <% end %>
+
+        
+      <% end %>
+      
+      
+      
+      <br>
+      
+      <div class="btn-group" role="group" aria-label="...">
+<!--
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatelist_<%= time_slots_list.id %>">
+          Edit
+        </button>
+-->
+        
+      </div>
+    </div>
+    
+  </div>
+    
+    <%= form_for(time_slots_list, :method => :put) do |f| %>
+    <div class="modal fade" id="myupdatelist_<%= time_slots_list.id %>" tabindex="-1" role="dialog" aria-labelledby="myModelLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title" id="myModalLabel">Edit</h4>
+         </div>
+        
+         <div class="modal-body">
+          <div class="field">
+            <%= f.label :event_name %><br>
+            <%= f.text_field :event_name, class: "form-control name" %>
+          </div>
+          <div class="field">
+            <%= f.label :start_date %><br>
+            <%= f.date_select :start_date, class: "form-control date_start" %>
+          </div>
+          <div class="field">
+            <%= f.label :end_date %><br>
+            <%= f.date_select :end_date, class: "form-control date_end" %>
+          </div>
+          <div class="field">
+            <%= f.label :duration %><br>
+            <%= f.select :duration, ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"], class: "form-control duration" %> <%= "hours" %>
+          </div>
+        </div>
+        
+        <div class="modal-footer">
+          <button type="button" id="myupdatebutton_<%= time_slots_list.id %>" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag "Update", class: "btn btn-primary" %>
+        </div>
+      </div>  
+    </div>
+    </div>
+    <% end %>
+</div>

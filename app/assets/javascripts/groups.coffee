@@ -5,6 +5,7 @@
 jQuery ->
     $("#addNewMember").on "click", ->
         $("#member_choices").append($("#new_member_form").html())
+ 
     
 @removeMember = (element) ->
     element.parent().remove()

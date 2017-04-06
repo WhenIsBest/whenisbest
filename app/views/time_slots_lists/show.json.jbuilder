@@ -1,0 +1,1 @@
+json.partial! "time_slots_lists/time_slots_list", time_slots_list: @time_slots_list

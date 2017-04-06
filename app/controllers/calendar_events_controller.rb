@@ -1,5 +1,5 @@
 class CalendarEventsController < ApplicationController
-    
+  
     def index
       @calendar_events = CalendarEvent.all
     end
@@ -13,7 +13,12 @@ class CalendarEventsController < ApplicationController
     end
     
     def group_new
-        @calendar_event = CalendarEvent.group_new(:group => group)
+        @calendar_event = CalendarEvent.new(calendar_event_params)
+    end
+  
+    def form_group
+      
+      @slot_list = TimeSlotList.new
     end
     
     def edit
@@ -24,13 +29,27 @@ class CalendarEventsController < ApplicationController
       @calendar_event = CalendarEvent.new(calendar_event_params)
       @calendar_event.host = current_user.id
       
+     
+      
       year = calendar_event_params["date(1i)"]
       month = calendar_event_params["date(2i)"]
       day = calendar_event_params["date(3i)"] 
+      
+      if calendar_event_params["year"]
+        year = calendar_event_params["year"]
+      end
+      
+      if calendar_event_params["month"]
+        month = calendar_event_params["month"]
+      end
+      
+      if calendar_event_params["day"]
+        day = calendar_event_params["day"]
+      end
+            
+      months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November" , "December"]
         
-      months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"}
-        
-      @calendar_event.month = months[month.to_i]
+      @calendar_event.month = get_month(months[month.to_i-1])
       @calendar_event.day = day
       @calendar_event.year = year 
         
@@ -43,14 +62,21 @@ class CalendarEventsController < ApplicationController
       @calendar_event.end_meridiem = calendar_event_params["end_meridiem"]
         
       @calendar_event.duration = @calendar_event.get_duration(@calendar_event.hour,@calendar_event.minutes,@calendar_event.meridiem,@calendar_event.end_hour,@calendar_event.end_minutes,@calendar_event.end_meridiem)
+      
+      if calendar_event_params["duration"]
+        @calendar_event.duration = calendar_event_params["duration"]
+      end
         
       @calendar_event.date = "#{@calendar_event.month} #{@calendar_event.day}, #{@calendar_event.year}"
         
       @calendar_event.group = calendar_event_params["group"]
       
       if @calendar_event.save!
-#        redirect_to @calendar_event
+        if @calendar_event.group
+          redirect_to group_path(@calendar_event.group)
+        else
           redirect_to '/welcome/homepage'
+        end
       else
         render 'new'
       end
@@ -60,8 +86,11 @@ class CalendarEventsController < ApplicationController
       @calendar_event = CalendarEvent.find(params[:id])
         
       if @calendar_event.update(calendar_event_params)
-#        redirect_to @calendar_event
-          redirect_to '/welcome/homepage'
+          if @calendar_event.group
+            redirect_to group_path(@calendar_event.group)
+          else
+            redirect_to '/welcome/homepage'
+          end
       else
         render 'edit'
       end
@@ -71,13 +100,20 @@ class CalendarEventsController < ApplicationController
       @calendar_event = CalendarEvent.find(params[:id])
       @calendar_event.destroy
 
-      redirect_to calendar_events_path
+      if @calendar_event.group
+        redirect_to group_path(@calendar_event.group)
+      else
+        redirect_to '/welcome/homepage'
+      end
     end   
     
+    def slots
+      
+    end
 
     private
       def calendar_event_params
-        params.require(:calendar_event).permit(:hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration, :day, :year, :month, :group)
+        params.require(:calendar_event).permit(:host, :start_time, :hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration, :day, :year, :month, :group)
       end
 end
 

@@ -1,13 +1,5 @@
-<div class="header">
-    <div id="left">
-        <h1>WhenIsBest</h1>
-        <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-        <p id="logout">Not <%= current_user.first_name %>? Click here.</p>
-        </div>
-    <div id="right">
-        <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
-    </div>
-</div>
+
+<%= render "welcome/header" %>
 
 <div class="edit-group">
         
@@ -43,13 +35,19 @@
                 <%= f.text_area :description %>
               </p>
 
-
             <div>
               <h3>Current members</h3>
                 <% @group.group_members.each do |member| %>
-                    <strong><%= member.first_name %>
-                    <%= member.last_name %></strong>
-                    <%= member.email %><br>
+                    <% if not member.kind_of?(User) %>
+                      <% group_member = User.find(member) %>
+                    <% else %>
+                      <% group_member = member %>
+                    <% end %>
+                    
+                    <strong><%= group_member.first_name %>
+                    <%= group_member.last_name %></strong>
+                    <%= group_member.email %><br>
+                        
                 <% end %>
             </div>
 

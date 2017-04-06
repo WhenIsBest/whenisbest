@@ -6,6 +6,7 @@
             <h1>WhenIsBest</h1>
             <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
             <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', login_path %>.</p>
+            <p id="logout"> <%= link_to 'Log out', root_path %>.</p>
         </div>
         <div id="update">
             <p>
@@ -59,9 +60,9 @@
               <% group_ids.each do |group_id| %>
                   <div id="group-item">
                     
-                    <% if group_id != nil %>
+                    <% if group_id %>
                         <% group = Group.where(:id => group_id).first %>
-                        <% if group != nil %>
+                        <% if group %>
                           <h4><%=link_to group.name, group_path(group)%></h4>
                           <p><%= group.description %></p>
                          <% end %>

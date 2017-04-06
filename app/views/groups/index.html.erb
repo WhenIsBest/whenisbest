@@ -1,22 +1,41 @@
-<h1>Listing groups</h1>
+<body>
+   <div class="header">
+        <div id="left">
+            <h1>WhenIsBest</h1>
+            <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
+            <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', login_path %>.</p>
+            <p id="logout"> <%= link_to 'Log out', root_path %>.</p>
+        </div>
+        <div id="right">
+            <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        </div>
+    </div>
+    <div class="manage-group">
+        <div class="group-header2">
+            <h2>Manage Groups</h2>
+        </div>
+        <div class="group-body">
+            <table class="gtable">
+              <tr>
+                  <th><h2 class="g_center">Name</h2></th>
+                  <th><h2 class="g_center">Description</h2></th>
+                  <th><h2 class="g_center">Members</h2></th>
+                  <th><h2 class="g_center">Action</h2></th>
+              </tr>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Group members</th>
-  </tr>
+              <% @groups.each do |group| %>
+                <% if not current_user.group_ids.include? group.id %>
+                  <% next %>
 
   <% @groups.each do |group| %>
     
-    <% if not current_user.group_ids.include? group.id %>
+    <% if not current_user.group_ids.include? group.id and not current_user.group_ids.include? group.id.to_s %>
       <% next %>
     <% end %>
     <tr>
       <td><%= group.name %></td>
       <td><%= group.description %></td>
       <td>
-        <% puts group.id %>
         
         <% if group.group_members != nil %>
             <% group.group_members.each do |member| %>
@@ -26,22 +45,29 @@
                           <% user = member %>
                         <% else %>
                           <% user = User.find(member) %>
+
                         <% end %>
                         <%= user.first_name %>
                         <%= user.last_name %>
                         ( <%= user.email %> )
                     </p>
                 </div>
+
             <% end %>
         <% end %>
       </td>
-      <td><%= link_to 'Show', group_path(group) %></td>
-      <td><%= link_to 'Edit', edit_group_path(group) %></td>
-      <td><%= button_to 'Destroy', group_path(group),
+      <td><%= link_to 'Show', group_path(group) %>
+      <%= link_to 'Edit', edit_group_path(group) %>
+      <%= button_to 'Destroy', group_path(group),
               method: :delete,
               data: { confirm: 'Are you sure?' }%></td>
     </tr>
   <% end %>
 </table>
-
-<%= link_to 'Back', welcome_homepage_path %>
+    </div>
+</div>
+<div class="content">
+    <button><%= link_to 'Back', welcome_homepage_path %></button>
+</div>
+     
+</body>
