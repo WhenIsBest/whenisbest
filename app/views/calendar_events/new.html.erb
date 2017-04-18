@@ -23,6 +23,7 @@
              
               <button id="white-button"><%= link_to 'Cancel', group_path(params[:format]) %></button></p>
             <% else %>
+
               <%= render 'form' %> 
               <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
             <% end %>

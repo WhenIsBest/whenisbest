@@ -16,10 +16,10 @@ class ApplicationController < ActionController::Base
   
   @@months_to_nums = {"January" => 1, "February" => 2, "March" => 3, "April" => 4, "May" => 5, "June" => 6, "July" => 7, "August" => 8, "September" => 9, "October" => 10, "November" => 11, "December" => 12}
   
-  @@print_military_to_traditional = {0 => "12:00 am", 1 => "1:00 am", 2 => "2:00 am", 3 => "3:00 am", 4 => "4:00 am", 5 => "5:00 am", 6 => "6:00 am", 7 => "7:00 am", 8 => "8:00 am", 9 => "9:00 am", 10 => "10:00 am", 11 => "11:00 am", 12 => "12:00 pm", 13 => "1:00 pm", 14 => "2:00 pm", 15 => "3:00 pm", 16 => "4:00 pm", 17 => "5:00 pm", 18 => "6:00 pm", 19 => "7:00 pm", 20 => "8:00 pm", 21 => "9:00 pm", 22 => "10:00 pm", 23 => "11:00 pm" }
+  @@print_military_to_traditional = {0 => "12:00 am", 1 => "1:00 am", 2 => "2:00 am", 3 => "3:00 am", 4 => "4:00 am", 5 => "5:00 am", 6 => "6:00 am", 7 => "7:00 am", 8 => "8:00 am", 9 => "9:00 am", 10 => "10:00 am", 11 => "11:00 am", 12 => "12:00 pm", 13 => "1:00 pm", 14 => "2:00 pm", 15 => "3:00 pm", 16 => "4:00 pm", 17 => "5:00 pm", 18 => "6:00 pm", 19 => "7:00 pm", 20 => "8:00 pm", 21 => "9:00 pm", 22 => "10:00 pm", 23 => "11:00 pm", 24 => "12:00 am" }
   
   def get_meridiem(time)
-    if time >= 12
+    if time >= 12 and time < 24
       return "PM"
     end
     return "AM"
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
   end
   
   def get_print_time(time)
-    return @@print_military_to_traditional[time]
+    return @@print_military_to_traditional[time % 24]
   end
     
   def get_month(month)
@@ -53,12 +53,10 @@ class ApplicationController < ActionController::Base
   def get_time_range(event_list)
       
       hour_set = Set.new
-      
       event_list.each do |event| 
 
         start_time = event.hour.to_i
-        end_time = event.end_hour.to_i
-        
+        end_time = event.end_hour.to_i        
         
         if event.meridiem == "PM" and start_time < 12
           start_time = start_time + 12
@@ -72,24 +70,27 @@ class ApplicationController < ActionController::Base
           end_time = 0
         end
         
-        if start_time == end_time
+        if start_time == end_time 
           next
         end
-          
-        
+         
         if start_time > end_time
           for i in start_time..23
             hour_set.add(i)
           end
           for i in 0..end_time
+            if end_time == 0
+              break
+            end
             hour_set.add(i)
           end
+          
         else
           for i in start_time..end_time-1
             hour_set.add(i)
           end
+          
         end
-            
       end
       
       return hour_set.to_a
