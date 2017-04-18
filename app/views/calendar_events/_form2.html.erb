@@ -1,3 +1,6 @@
+<% require 'algorithm_helper.rb' %>
+<% require 'months_conversion_helper.rb' %>
+<% nums_to_months = {1 => "January", 2 => "February", 3 => "March", 4 => "April", 5 => "May", 6 => "June", 7 => "July", 8 => "August", 9 => "September", 10 => "October", 11 => "November", 12 => "December"} %>
 <%= form_for @calendar_event do |f| %>
  
   <% if @calendar_event.errors.any? %>
@@ -19,8 +22,16 @@
   </p>
 
   <p>
+      <% check = @calendar_event.month.to_i %>
+      <% if check != 0 %>
+        <% month = nums_to_months[check] %>
+        <% puts "nums_to_months #{month}" %>
+      <% else %>
+        <% month = @calendar_event.month %>
+      <% end %>
+      
       <%= f.label "Date:" %><br>
-      <%= f.select :month, @calendar_event.months, :selected => get_month(@calendar_event.month) %> <%= f.select :day, @calendar_event.days %> <%= f.select :year, @calendar_event.years %>  
+      <%= f.select :month, @calendar_event.months, :selected => month %> <%= f.select :day, @calendar_event.days %> <%= f.select :year, @calendar_event.years %>  
   </p>
  
   <p>

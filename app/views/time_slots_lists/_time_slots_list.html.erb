@@ -46,6 +46,7 @@
           <% for j in 0..23 %>
             <% subset = Set.new %>
             <% if j + duration > 24 %>
+                <!-- Limits ability to make multiple day events, for now, until that functionality is added-->
                 <% break %>
                 <% if i == end_day %>
                   <% break %>

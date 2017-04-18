@@ -22,8 +22,8 @@ class CalendarEvent < ApplicationRecord
             end_hour = (end_hour.to_i + 12).to_s
         end
         
-        hour_diff = (start_hour.to_i - end_hour.to_i).to_s
-        minutes_diff = (start_minutes.to_i - end_minutes.to_i).to_s
+        hour_diff = (start_hour.to_i - end_hour.to_i).abs.to_s
+        minutes_diff = (start_minutes.to_i - end_minutes.to_i).abs.to_s
         
         result = hour_diff + "." + minutes_diff
         result
