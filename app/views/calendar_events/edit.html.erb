@@ -5,7 +5,13 @@
     <div class="edit-event">
         <div class="event-header">
             <h3>Edit Event</h3>
-            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
+            <button id="white-button">
+              <% if params[:group] %>
+                <%= link_to 'Cancel', group_path(params[:group]) %>
+              <% else %>
+                <%= link_to 'Cancel', welcome_homepage_path %>
+              <% end %>
+            </button>
             <button id="white-button"><%= link_to "Delete", @calendar_event, method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %></button>
         </div>
         

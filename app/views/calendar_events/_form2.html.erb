@@ -53,6 +53,16 @@
   </p>
 
   <p>
+    <%= f.label "Priority:"%><br>
+    <% if @calendar_event.priority %>
+      <% priority = @calendar_event.priority %>
+    <% else %>
+      <% priority = 1 %>
+    <% end %>
+    <%= f.select :priority, [1,2,3,4,5], :selected => priority %>
+  </p>
+
+  <p>
     <%= f.submit "Update Event"%>
   </p>
  

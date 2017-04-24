@@ -19,6 +19,15 @@
   <%= @calendar_event.end_hour %>:<%= @calendar_event.end_minutes %> <%= @calendar_event.end_meridiem %>
 </p>
 
+<p>
+  <strong>Priority:</strong>
+    <% if calendar_event.priority %>
+      <%= calendar_event.priority %>
+    <% else %>
+      <%= 0 %>
+    <% end %>
+</p>
+
 <%= link_to 'Edit', edit_calendar_event_path(@calendar_event) %> |
 <%= link_to 'Back', welcome_homepage_path %>
 <%= button_to 'Delete', calendar_event_path(@calendar_event),

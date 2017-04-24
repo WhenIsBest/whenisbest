@@ -7,7 +7,6 @@
     </div>
     
     <div class="panel-body">
-      
       <% group_id = time_slots_list.group %>
       <% if time_slots_list.event_name != "" and group_id and time_slots_list.start_date %>
         
@@ -28,22 +27,61 @@
           <% if group_events.kind_of?(CalendarEvent) %>
             <% events.push(group_events) %>
           <% end %>
+      
+          <% group_events_alt = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",time_slots_list.start_date.year.to_s, time_slots_list.start_date.month,i.to_s,group_id.to_s]) %>
+          <% if group_events_alt.kind_of?(CalendarEvent) %>
+            <% events.push(group_events_alt) %>
+          <% else %>
+            <% puts time_slots_list.start_date.month %>
+          <% end %>
           
+          <% busy_times = [0,24] %>
           <!-- Get the user events for each user in this group -->
           <% group.group_members.each do |user| %>
+            <% group_user = User.find(user) %>
+            <% if group_user.start_time %>
+              <% start_time = group_user.start_time %>
+              <% end_time = group_user.end_time %>
+
+              <% if group_user.start_md == "PM" and start_time < 12 %>
+                <% start_time = start_time + 12 %>
+              <% elsif group_user.start_md == "AM" and start_time == 12 %>
+                <% start_time = 0 %>
+              <% end %>
+
+              <% if group_user.end_md == "PM" and end_time < 12 %>
+                <% end_time = end_time + 12 %>
+              <% elsif group_user.end_md == "AM" and end_time == 12 %>
+                <% end_time = 0 %>
+              <% end %>
+              <% if busy_times[0] < start_time %>
+                <% busy_times[0] = start_time %>
+              <% end %>
+              <% if busy_times[1] > end_time %>
+                <% busy_times[1] = end_time %>
+              <% end %>
+            <% end %>
+            
             <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,user.to_s]).find_each.to_a %>
+            <% events_today.each do |event| %>
+              <% events.push(event) %>
+            <% end %>
+      
+            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.year.to_s, time_slots_list.start_date.month,i.to_s,user.to_s]).find_each.to_a %>
             <% events_today.each do |event| %>
               <% events.push(event) %>
             <% end %>
           <% end %>
       
           <!-- get the available hours and the duration specified -->
-          <% time_range = get_time_range(events) %>
-        
+          <% time_range = get_time_range(events) %>    
+      
+          
+
           <% hour_set = time_range.to_set %>
           <% duration = time_slots_list.duration %>
       
-          <% for j in 0..23 %>
+          <% for j in busy_times[0]..busy_times[1]-1 %>
             <% subset = Set.new %>
             <% if j + duration > 24 %>
                 <!-- Limits ability to make multiple day events, for now, until that functionality is added-->
@@ -77,8 +115,39 @@
             
             <% if not subset.intersect? hour_set %>
               
+              <!-- pair = [day,hour] -->
               <% pair = [i,j] %>
               <% time_slots.push(pair) %>
+      
+            <% else %>
+              <% subset.each do |subset_hour| %>
+      
+                <% conflict = CalendarEvent.where(:year => time_slots_list.start_date.year.to_s, :month => get_month(time_slots_list.start_date.month).to_s, :day => i.to_s, :group => group_id.to_s, :hour => subset_hour.to_s) %>
+                <% conflict_alt = CalendarEvent.where(:year => time_slots_list.start_date.year.to_s, :month => time_slots_list.start_date.month.to_s, :day => i.to_s, :group => group_id.to_s, :hour => subset_hour.to_s) %>
+      
+                
+                <% event_list = [] %>
+                <% if conflict %>
+                  <% event_list = event_list + conflict.to_a %>
+                <% end %>
+                <% if conflict_alt %>
+                  <% event_list = event_list + conflict_alt.to_a %>
+                <% end %>
+            
+                <% event_list.each do |event| %>
+                  <% start_hour = event.hour.to_i %>
+                  <% end_hour = event.end_hour.to_i %>
+      
+                  <% if subset.include?(start_hour) %>
+                    <% if time_slots_list.priority.to_i >= event.priority.to_i %>
+                      <% pair = [i,j] %>
+                      <% time_slots.push(pair) %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+                
+              <% end %>
+               
               
             <% end %>
       
@@ -87,15 +156,21 @@
         <% end %>
       
         <% time_slots.each do |slot| %>
+          <% month = get_month(time_slots_list.start_date.prev_day.month.to_s).to_i %>
+          <% if month == 0 %>
+            <% month = time_slots_list.start_date.prev_day.month %>
+          <% end %>
           <% if tmr_hour_set %>
-            <% date_start = Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.prev_day.month.to_s),slot[0]).strftime('%m/%d/%Y') %>
+            
+            <% date_start = Date.new(time_slots_list.start_date.year,month,slot[0]).strftime('%m/%d/%Y') %>
             <% hour_end = (slot[1] + duration) % 24 %>
           <% else %>
-            <% date_start = Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.month.to_s),slot[0]).strftime('%m/%d/%Y') %>
+            <% date_start = Date.new(time_slots_list.start_date.year,month,slot[0]).strftime('%m/%d/%Y') %>
             <% hour_end = slot[1] + duration %>
           <% end %>
-          <% button_name = "#{Date.new(time_slots_list.start_date.year,get_month(time_slots_list.start_date.month.to_s),slot[0]).strftime('%m/%d/%Y')} #{get_print_time(slot[1])} - #{get_print_time(slot[1] + duration)}" %>
-          <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => date_start, :month => get_month(time_slots_list.start_date.month.to_s).to_s, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(hour_end).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(hour_end), :duration => duration}) %><p></p></div>
+          
+          <% button_name = "#{date_start} #{get_print_time(slot[1])} - #{get_print_time(slot[1] + duration)}" %>
+          <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => date_start, :month => month, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(hour_end).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(hour_end), :duration => duration, :priority => time_slots_list.priority.to_i }) %><p></p></div>
         <% end %>
 
         

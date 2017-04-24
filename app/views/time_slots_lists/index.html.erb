@@ -71,6 +71,10 @@
             <%= f.select :duration, ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"], class: "form-control duration" %> <%= "hours" %>
           </div>
           <div class="field">
+            <%= f.label :priority %><br>
+            <%= f.select :priority, [1,2,3,4,5], class: "form-control priority" %>
+          </div>
+          <div class="field">
             <%= f.hidden_field :group, :value => @group %>
           </div>
         </div>

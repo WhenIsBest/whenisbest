@@ -27,17 +27,29 @@
       <%= f.label "Email" %><br>
       <%= f.text_field :email %>
   </p>
+<br>
+  <p>
+    <%= f.label "I'm available from"%>...<br>
+    <%= f.select :start_time, ['12','1','2','3','4','5','6','7','8','9','10','11'] %>
+
+    <%= f.select :start_md, ["AM","PM"] %>
+  </p>
 
   <p>
-      <button>Change Password</button>
+    <%= f.label "Until"%>...<br>
+    <%= f.select :end_time, ['12','1','2','3','4','5','6','7','8','9','10','11'] %>
+
+    <%= f.select :end_md, ["AM","PM"]%>
   </p>
+<br>
 
   <p>
       <%= f.time_zone_select :time_zone, nil, {:include_blank => false} %>
   </p>
+  <br>
 
   <p>
-    <%= f.submit "Submit New Settings"%>
+    <button>Change Password</button> <%= f.submit "Update Settings"%>
   </p>
  
 <% end %>

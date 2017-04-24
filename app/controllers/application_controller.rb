@@ -40,13 +40,13 @@ class ApplicationController < ActionController::Base
   end
     
   def get_month(month)
+    
     check = month.to_i
     if check == 0
       result = @@months_to_nums[month]
     else
-      result = check
+      result = @@nums_to_months[check]
     end   
-    
     return result
   end
     
