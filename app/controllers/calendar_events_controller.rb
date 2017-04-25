@@ -71,6 +71,8 @@ class CalendarEventsController < ApplicationController
         
       @calendar_event.group = calendar_event_params["group"]
       
+      @calendar_event.priority = calendar_event_params["priority"]
+      
       if @calendar_event.save!
         if @calendar_event.group
           redirect_to group_path(@calendar_event.group)
@@ -113,7 +115,7 @@ class CalendarEventsController < ApplicationController
 
     private
       def calendar_event_params
-        params.require(:calendar_event).permit(:host, :start_time, :hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration, :day, :year, :month, :group)
+        params.require(:calendar_event).permit(:host, :start_time, :hour, :minutes, :meridiem, :name, :date, :end_hour, :end_minutes, :end_meridiem, :duration, :day, :year, :month, :group, :priority)
       end
 end
 

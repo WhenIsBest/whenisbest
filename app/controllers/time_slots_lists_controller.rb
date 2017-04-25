@@ -82,6 +82,6 @@ class TimeSlotsListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def time_slots_list_params
-      params.require(:time_slots_list).permit(:start_date, :end_date, :duration, :event_name, :group)
+      params.require(:time_slots_list).permit(:start_date, :end_date, :duration, :event_name, :group, :priority)
     end
 end

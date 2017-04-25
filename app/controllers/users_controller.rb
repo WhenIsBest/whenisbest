@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
         
       if @user.update(user_params)
-        redirect_to @user
+        redirect_to '/welcome/homepage'
       else
         render 'edit'
       end
@@ -33,6 +33,6 @@ class UsersController < ApplicationController
     
   private
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :password, :time_zone, :group_ids)
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :time_zone, :group_ids, :start_time, :end_time, :start_md, :end_md)
     end
 end
