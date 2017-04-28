@@ -1,0 +1,11 @@
+// Place all the styles related to the time_slots_lists controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+header {
+  position: relative;
+  z-index: 1000;
+}
+
+.container {
+  z-index: -1;
+}

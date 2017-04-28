@@ -21,7 +21,7 @@ HTML, CSS (SASS), Javascript (CoffeeScript), Ruby on Rails
     - The current schema can be found in db/schema.rb. (The "events" table is not used)
 - GOAL 2 (March 10): Begin implementation of algorithm to automate scheduling for meetings/events
     - The basic implementation of the algorithm will allow users to host events and will provide that user with the best available time slots for the users in that group with regard to the event.
-    - The more advanced implemenentation of the algorithm adds in the functionality of priorities that will allow posted events to replace events of lower priority when the algorithm is run. This helps when finding a time slot for mandatory events as opposed to events that can be missed by users.
+    - The more advanced implementation of the algorithm adds in the functionality of priorities that will allow posted events to replace events of lower priority when the algorithm is run. This helps when finding a time slot for mandatory events as opposed to events that can be missed by users.
     - The final piece will be to work on the front-end of the algorithm. This includes any sort of display of the best available time slots, whether it will be a list of calendars or just a list of times
 - GOAL 3 (March 24): Create a better display of the group manager page.
 - GOAL 4 (April 1): Add the ability for users to log out

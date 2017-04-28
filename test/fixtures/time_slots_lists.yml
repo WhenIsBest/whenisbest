@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2017-03-30
+  end_date: 2017-03-30
+  duration: 1
+
+two:
+  start_date: 2017-03-30
+  end_date: 2017-03-30
+  duration: 1

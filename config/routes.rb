@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
     
+  resources :time_slots_lists
   resource :statics, :only => [:show, :new, :create]
 
   get 'calendar/show'
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
     
   get 'welcome/homepage'
+  #get 'users/all_events'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   get 'signup' => 'users#new'
