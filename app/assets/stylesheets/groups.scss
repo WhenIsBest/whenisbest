@@ -91,16 +91,17 @@
 
 .create-group,.edit-group,.manage-group {
     
-    margin-top: 70px;
+    //margin-top: 70px;
     background-color: white;
+    margin: auto;
     width: 100%;
-    
+    max-width:950px;
     .group-header {
         background-color: darkgreen;
         top: 0px; 
         padding: 7px;
         padding-top: 3px;
-        padding-right: 0px;
+        padding-right: 20px;
         box-shadow: 1px 0px 1px #888888;
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
