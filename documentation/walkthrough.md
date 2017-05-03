@@ -11,6 +11,7 @@ Table of contents:
 1. [New group page](#new-group-page)
 1. [Group page](#group-page)
 1. [Edit group page](#edit-group-page)
+1. [Suggest group event page](#suggest-group-event-page)
 1. [New event page](#new-event-page)
 1. [Edit user settings page](#edit-user-settings-page)
 
@@ -80,13 +81,39 @@ To a create a new group, a user would a need a name and a description. New membe
 ![screenshot 202](https://cloud.githubusercontent.com/assets/16448052/24425690/12ada82c-13d3-11e7-9d25-71176c456811.png)
 (as of 03/18/17)
 
+This page shows the group calendar, which has group events. The events of each user in the group will not be displayed.
+
 **Known bugs/issues(s)**:
 
 **Github open issues:**
 
 ## Edit group page
 ![screenshot 203](https://cloud.githubusercontent.com/assets/16448052/24425695/16cc2078-13d3-11e7-8c39-d2f6854852cc.png)
-(as of 03/18/17)
+(as of 03/18/17
+
+A page update the information of a group. Can update name, description, members.
+
+**Known bugs/issues(s)**:
+* Right now there is little concept of a group admin, no user who has been added to a group will know that he/she has been added or removed
+
+**Github open issues:**
+
+## Suggest group event page
+![screenshot 347](https://cloud.githubusercontent.com/assets/16448052/25684753/28c7334c-3031-11e7-8dc9-ad979fab10d3.png)
+(as of 05/03/2017)
+
+The suggest group event page allows a user to suggest an event to their group. A user can click the button "Get Time Slots!", which would perform an algorithm to find all the available times slots for the desired event (a pop up will display for the user to fill in the new event information). Available and suggested time slots will appear at the bottom of the page as buttons. Once one of the buttons is clicked, the calendar is updated with the new event in place. 
+
+**Known bugs/issues(s)**:
+* UI needs improvement, make everything fit in one page (don't have to scroll)
+
+**Github open issues:**
+
+## Group Manager Page
+![screenshot 348](https://cloud.githubusercontent.com/assets/16448052/25685061/dff96980-3032-11e7-968c-e7ce93cef59b.png)
+(as of 05/03/2017)
+
+The group manager page serve as a place for a user to look at his/her groups. In this page a user can click or edit the desired group or remove himself/herself from the group. Each group displays name, description, and members
 
 **Known bugs/issues(s)**:
 
@@ -105,6 +132,7 @@ To a create a new group, a user would a need a name and a description. New membe
 (as of 03/18/17)
 
 **Known bugs/issues(s)**:
+* Password won't actually update when trying to change it
 
 **Github open issues:**
 
