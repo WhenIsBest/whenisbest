@@ -26,8 +26,10 @@
               <% @groups.each do |group| %>
                 <% if not current_user.group_ids.include? group.id %>
                   <% next %>
+                <% end %>
 
   <% @groups.each do |group| %>
+                
     
     <% if not current_user.group_ids.include? group.id and not current_user.group_ids.include? group.id.to_s %>
       <% next %>
@@ -69,5 +71,5 @@
 <div class="content">
     <button><%= link_to 'Back', welcome_homepage_path %></button>
 </div>
-     
 </body>
+<% end %>
