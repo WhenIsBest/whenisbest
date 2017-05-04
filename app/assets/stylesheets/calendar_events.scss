@@ -3,9 +3,15 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .create-event, .edit-event {
-    margin-top: 70px;
-    background-color: white;
+    //margin-top: 70px;
+    background-color: #FFFAFA;
     width: 100%;
+    max-width: 950px;
+    position:absolute; /*it can be fixed too*/
+    left:0; right:0;
+    top:70px; bottom:0;
+    margin:auto;
+
     
     .event-header {
         background-color: crimson;

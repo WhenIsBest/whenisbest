@@ -91,9 +91,15 @@
 
 .create-group,.edit-group,.manage-group {
     
-    margin-top: 70px;
-    background-color: white;
-    width: 100%;
+    //margin-top: 70px;
+    background-color:white ;
+     position:absolute; /*it can be fixed too*/
+        left:0; right:0;
+        top:70px; bottom:0;
+        margin:auto;
+
+  
+    max-width:950px;
     
     .group-header {
         background-color: darkgreen;
@@ -126,7 +132,7 @@
 
     .group-body {
         height: 550px;
-        background-color: white;
+        background-color: white ;
         top: 0px;
         margin-top: 0px;
         padding-left: 10px;
