@@ -1,22 +1,23 @@
 <body>
     
     <%= render "welcome/header" %>
-    
-    <div class="create-group">
-        
-        <div class="group-header">
-            <h3>Create New Group</h3>
-            <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
-        </div>
-        
-        <div class="group-body">
-            <%= render 'form' %>
+    <div style="margin-top: 70px;">
+        <div class="create-group">
 
-            <div style="display: none;" id="new_member_form">
-                <%= render partial: "member_choice", locals: {group: false} %>
+            <div class="group-header">
+                <h3>Create New Group</h3>
+                <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button>
             </div>
-        </div>
 
+            <div class="group-body">
+                <%= render 'form' %>
+
+                <div style="display: none;" id="new_member_form">
+                    <%= render partial: "member_choice", locals: {group: false} %>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 </body>

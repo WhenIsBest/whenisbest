@@ -1,18 +1,20 @@
 <div class="login">
   <div class="container">
     <div class="form">
-
-    <h1>Sign up</h1>
-
-    <%= form_for(@user) do |f| %>
-      <%= f.text_field :first_name, :placeholder => "First name" %>
-      <%= f.text_field :last_name, :placeholder => "Last name" %>
-      <%= f.email_field :email, :placeholder => "Email" %>
-      <%= f.password_field :password, :placeholder => "Password" %>
-      <%= f.time_zone_select :time_zone, nil, {:include_blank => false} %>
-      <%= f.submit "Create an account", class: "btn-submit" %>
-    <% end %>
-
+    <h1 class ="center">Sign up</h1>
+    
+    <div class ="center">
+        <div>
+             <img src="https://raw.githubusercontent.com/WhenIsBest/whenisbest/master/rsz_whenisbest_-_logo.png" />
+        </div>
+        <%= form_for(@user) do |f| %>
+         <p> <%= f.text_field :first_name, :placeholder => "First name" %></p>
+         <p> <%= f.text_field :last_name, :placeholder => "Last name" %></p>
+         <p>  <%= f.email_field :email, :placeholder => "Email" %></p>
+         <p> <%= f.password_field :password, :placeholder => "Password" %></p>
+         <p> <%= f.time_zone_select :time_zone, nil, {:include_blank => false} %></p>
+            <p><%= f.submit "Create an account", class: "btn-submit" %></p>
+        <% end %>
     </div>
   </div>
 </div>
