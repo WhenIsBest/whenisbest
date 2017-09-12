@@ -2,6 +2,15 @@
 
 Make whenisgood, great again.
 
+### Try It Out!
+- Look up 'RailsInstaller' on your favorite search engine and use it to download the Ruby on Rails framework. 
+- After successfully installing Ruby On Rails, clone this repository to your local drive (using git clone in your Command Prompt or Terminal).
+- Navigate into the folder created for the repo (using the cd (enter folder name) command)
+- Type 'ruby bin/rails server' or 'rails server' into the Command Prompt and press Enter (a lot of output should eventually be printed afterwards)
+- If the last line of output begins with 'Completed 200 OK', then it is working
+- Go to your browser and enter 'localhost:3000' into the search bar.
+- If you don't see an error, then you've made it! Welcome to whenisbest! :)
+
 ### Purpose
 This project focuses on developing a “Group Calendar” for people. It will involve automated scheduling to determine a time or day where most of your friends/family/group members will be free and available. Users input their main schedules into the application and events will be added or deleted to their schedules accordingly, based on what they sign up for. We will also make groups and chat boxes accordingly. 
 
