@@ -52,7 +52,7 @@ In order to receive the most recent updates to the simple_calendar code, one sho
 
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
-## How to run whenisbest is your local server
+## How to run whenisbest in your local server
 Also in whenisbest/documentation/documentation.md
 
 whenisbest uses [Ruby on rails](http://rubyonrails.org/) which includes HTML, CSS/SASS, JavaScript/CoffeeScript for the front-end.
