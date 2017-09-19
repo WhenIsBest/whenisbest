@@ -18,6 +18,24 @@ class ApplicationController < ActionController::Base
   
   @@print_military_to_traditional = {0 => "12:00 am", 1 => "1:00 am", 2 => "2:00 am", 3 => "3:00 am", 4 => "4:00 am", 5 => "5:00 am", 6 => "6:00 am", 7 => "7:00 am", 8 => "8:00 am", 9 => "9:00 am", 10 => "10:00 am", 11 => "11:00 am", 12 => "12:00 pm", 13 => "1:00 pm", 14 => "2:00 pm", 15 => "3:00 pm", 16 => "4:00 pm", 17 => "5:00 pm", 18 => "6:00 pm", 19 => "7:00 pm", 20 => "8:00 pm", 21 => "9:00 pm", 22 => "10:00 pm", 23 => "11:00 pm", 24 => "12:00 am" }
   
+  @@month_ends = {"January" => 31, "February" => 28, "March" => 31, "April" => 30, "May" => 31, "June" => 30, "July" => 31, "August" => 31, "September" => 30, "October" => 31, "November" => 30, "December" => 31}
+  
+  def get_month_end(month,leapyear=False)
+    if month.to_i == 0
+      result = @@month_ends[month]
+      if month == "February" and leapyear
+        result += 1
+      end
+    else
+      result = @@month_ends[@@num_to_months[month]]
+      if month == 2 and leapyear
+        result += 1
+      end
+    end
+    
+    return result
+  end
+  
   def get_meridiem(time)
     if time >= 12 and time < 24
       return "PM"
@@ -69,6 +87,8 @@ class ApplicationController < ActionController::Base
         elsif event.end_meridiem == "AM" and end_time == 12
           end_time = 0
         end
+        
+       
         
         if start_time == end_time 
           next

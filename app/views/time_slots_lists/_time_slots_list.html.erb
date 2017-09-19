@@ -10,7 +10,7 @@
       <% group_id = time_slots_list.group %>
       <% if time_slots_list.event_name != "" and group_id and time_slots_list.start_date %>
         
-        <% time_slots = [] %>
+        <% time_slots = Set.new %>
         <% group = Group.find(group_id) %>
                     
         <% start_day = time_slots_list.start_date.day %>
@@ -23,16 +23,14 @@
           <% events = [] %>
           
           <!-- Get all today's group events for this group -->
-          <% group_events = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,group_id.to_s]) %>
+          <% group_events = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",(time_slots_list.start_date+i).year.to_s, get_month((time_slots_list.start_date + i).month).to_s,i.to_s,group_id.to_s]) %>
           <% if group_events.kind_of?(CalendarEvent) %>
             <% events.push(group_events) %>
           <% end %>
       
-          <% group_events_alt = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",time_slots_list.start_date.year.to_s, time_slots_list.start_date.month,i.to_s,group_id.to_s]) %>
+          <% group_events_alt = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",(time_slots_list.start_date+i).year.to_s, (time_slots_list.start_date+i).month,i.to_s,group_id.to_s]) %>
           <% if group_events_alt.kind_of?(CalendarEvent) %>
             <% events.push(group_events_alt) %>
-          <% else %>
-            <% puts time_slots_list.start_date.month %>
           <% end %>
           
           <% busy_times = [0,24] %>
@@ -62,16 +60,24 @@
               <% end %>
             <% end %>
             
-            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.year.to_s, get_month(time_slots_list.start_date.month).to_s,i.to_s,user.to_s]).find_each.to_a %>
+            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",(time_slots_list.start_date+i).year.to_s, get_month((time_slots_list.start_date+i).month).to_s,i.to_s,user.to_s]).find_each.to_a %>
             <% events_today.each do |event| %>
               <% events.push(event) %>
             <% end %>
       
-            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.year.to_s, time_slots_list.start_date.month,i.to_s,user.to_s]).find_each.to_a %>
+            <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",(time_slots_list.start_date+i).year.to_s, (time_slots_list.start_date+i).month,i.to_s,user.to_s]).find_each.to_a %>
             <% events_today.each do |event| %>
               <% events.push(event) %>
             <% end %>
           <% end %>
+      
+          <% puts "event info" %>
+          <% events.each do |event| %>
+            <% puts event.name %>
+            <% puts event.hour %>
+            <% puts event.day %>
+          <% end %>
+          <% gets.chomp %>
       
           <!-- get the available hours and the duration specified -->
           <% time_range = get_time_range(events) %>    
@@ -91,14 +97,14 @@
                 <% else %>
                   <% tmr_events = [] %>
                   <!-- Get all tomorrow's group events for this group -->
-                  <% group_events = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",time_slots_list.start_date.next.year.to_s, get_month(time_slots_list.start_date.next.month).to_s,(i+1).to_s,group_id.to_s]) %>
+                  <% group_events = CalendarEvent.where(["year = ? and month = ? and day = ? and group = ?",(time_slots_list.start_date+i).next.year.to_s, get_month((time_slots_list.start_date+i).next.month).to_s,(i+1).to_s,group_id.to_s]) %>
                   <% if group_events.kind_of?(CalendarEvent) %>
                     <% tmr_events.push(group_events) %>
                   <% end %>
           
                   <!-- Get tomorrow's user events for each user in this group -->
                   <% group.group_members.each do |user| %>
-                    <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",time_slots_list.start_date.next.year.to_s, get_month(time_slots_list.start_date.next.month).to_s,(i+1).to_s,user.to_s]).find_each.to_a %>
+                    <% events_today = CalendarEvent.where(["year = ? and month = ? and day = ? and host = ?",(time_slots_list.start_date+i).next.year.to_s, get_month((time_slots_list.start_date+i).next.month).to_s,(i+1).to_s,user.to_s]).find_each.to_a %>
                     <% events_today.each do |event| %>
                       <% tmr_events.push(event) %>
                     <% end %>
@@ -108,22 +114,30 @@
                 <% tmr_time_range = get_time_range(tmr_events) %>
                 <% tmr_hour_set = tmr_time_range.to_set %>
             <% end %>
-      
+            
+            <% puts "Subset" %>
             <% for k in j..j+(duration-1) %>
               <% subset.add(k) %>
+              <% puts k %>
             <% end %>
-            
+      
+            <% puts "hour set" %>
+          
+            <% hour_set.each do |hour| %>
+              <% puts hour %>
+            <% end %>
+      
             <% if not subset.intersect? hour_set %>
               
               <!-- pair = [day,hour] -->
               <% pair = [i,j] %>
-              <% time_slots.push(pair) %>
+              <% time_slots.add(pair) %>
       
             <% else %>
               <% subset.each do |subset_hour| %>
-      
-                <% conflict = CalendarEvent.where(:year => time_slots_list.start_date.year.to_s, :month => get_month(time_slots_list.start_date.month).to_s, :day => i.to_s, :group => group_id.to_s, :hour => subset_hour.to_s) %>
-                <% conflict_alt = CalendarEvent.where(:year => time_slots_list.start_date.year.to_s, :month => time_slots_list.start_date.month.to_s, :day => i.to_s, :group => group_id.to_s, :hour => subset_hour.to_s) %>
+                      
+                <% conflict = CalendarEvent.where(:year => (time_slots_list.start_date+i).year.to_s, :month => get_month((time_slots_list.start_date+i).month).to_s, :day => i.to_s, :hour => subset_hour.to_s) %>
+                <% conflict_alt = CalendarEvent.where(:year => (time_slots_list.start_date+i).year.to_s, :month => (time_slots_list.start_date+i).month.to_s, :day => i.to_s, :hour => subset_hour.to_s) %>
       
                 
                 <% event_list = [] %>
@@ -133,18 +147,21 @@
                 <% if conflict_alt %>
                   <% event_list = event_list + conflict_alt.to_a %>
                 <% end %>
-            
+      
                 <% event_list.each do |event| %>
                   <% start_hour = event.hour.to_i %>
                   <% end_hour = event.end_hour.to_i %>
-      
+                  
+                 
                   <% if subset.include?(start_hour) %>
                     <% if time_slots_list.priority.to_i >= event.priority.to_i %>
                       <% pair = [i,j] %>
-                      <% time_slots.push(pair) %>
+                      <% puts pair %>
+                      <% time_slots.add(pair) %>
                     <% end %>
                   <% end %>
                 <% end %>
+                <% gets.chomp %>
                 
               <% end %>
                
@@ -156,21 +173,21 @@
         <% end %>
       
         <% time_slots.each do |slot| %>
-          <% month = get_month(time_slots_list.start_date.prev_day.month.to_s).to_i %>
+          <% month = get_month((time_slots_list.start_date+slot[0]).prev_day.month.to_s).to_i %>
           <% if month == 0 %>
-            <% month = time_slots_list.start_date.prev_day.month %>
+            <% month = (time_slots_list.start_date+slot[0]).prev_day.month %>
           <% end %>
           <% if tmr_hour_set %>
             
-            <% date_start = Date.new(time_slots_list.start_date.year,month,slot[0]).strftime('%m/%d/%Y') %>
+            <% date_start = Date.new((time_slots_list.start_date+slot[0]).year,month,slot[0]).strftime('%m/%d/%Y') %>
             <% hour_end = (slot[1] + duration) % 24 %>
           <% else %>
-            <% date_start = Date.new(time_slots_list.start_date.year,month,slot[0]).strftime('%m/%d/%Y') %>
+            <% date_start = Date.new((time_slots_list.start_date+slot[0]).year,month,slot[0]).strftime('%m/%d/%Y') %>
             <% hour_end = slot[1] + duration %>
           <% end %>
           
           <% button_name = "#{date_start} #{get_print_time(slot[1])} - #{get_print_time(slot[1] + duration)}" %>
-          <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => date_start, :month => month, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(hour_end).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(hour_end), :duration => duration, :priority => time_slots_list.priority.to_i }) %><p></p></div>
+          <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => date_start, :month => month, :day => slot[0].to_s, :year => (time_slots_list.start_date+slot[0]).year.to_s, :end_hour => get_traditional(hour_end).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(hour_end), :duration => duration, :priority => time_slots_list.priority.to_i }) %><p></p></div>
         <% end %>
 
         
