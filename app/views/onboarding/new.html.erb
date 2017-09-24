@@ -17,9 +17,10 @@
                 <img src="https://raw.githubusercontent.com/WhenIsBest/whenisbest/master/rsz_whenisbest_-_logo.png" />
             </div>
             
-	   		<button class="button"><%= link_to 'Login', login_path %>             </button>
-            <button class="button"><%= link_to 'Sign Up', signup_path %>
-            </button>	
+            <div class="button_line">
+            <%= button_to "Log in", login_path, :method => "get",:class => "button" %>
+            <%= button_to "Sign Up", signup_path, :method => "get",:class => "button" %>
+            </div>
 		</div> 
         <div class="center">
 			<p> A quick and easy alternative to whenisgood. Schedule meetings with ease using our combined calendar platform. 

@@ -73,9 +73,15 @@ body {
     color: midnightblue;
 
 }
+.button_line{
+  margin: auto;
+  width: 210px;
+  height: 100px;
+
+}
 
 .button {
-  display: inline-block;
+  float:left;
   padding: 15px 25px;
   font-size: 16px;
   cursor: pointer;
