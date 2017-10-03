@@ -16,17 +16,17 @@ body {
     top: 0px;
     left: 0px;
     box-shadow: 1px 0px 1px #888888;
-    
+
     #left {
         float: left;
         padding-top: 15px;
         padding-bottom: 15px;
         vertical-align: middle;
-        
+
         h1,p {
             display: inline;
         }
-        
+
         h1 {
             color: darkblue;
             padding: 0px;
@@ -34,25 +34,25 @@ body {
             margin-left: 10px;
             margin-bottom: 0px;
         }
-        
+
         p {
             padding: 0px;
             margin-top: 13px;
         }
-        
+
         #greeting {
             margin-left: 7px;
             font-size: 15px;
             padding-top: 5px;
         }
-        
+
         #logout {
             margin-left: 3px;
             font-size: 10px;
         }
-    
+
     }
-    
+
     #right {
         float: right;
         padding-top: 15px;
@@ -68,24 +68,24 @@ body {
 }
 
 .sidebar {
-    
-    width: 370px;
+
+    width: 24%;
     background-color: azure;
     float: left;
     left: 0px;
     padding-top: 0px;
-    
+
     .groups {
         background-color: #38547f;
         width: 100%;
-        top: 0px; 
+        top: 0px;
         padding: 7px;
         padding-top: 3px;
         padding-right: 0px;
         box-shadow: 1px 0px 1px #888888;
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
-        
+
         h3 {
             color: white;
         }
@@ -100,37 +100,37 @@ body {
         padding: 0px;
         background-color: white;
         color: darkgray;
-        
+
         #group-item {
             width: 100%;
             border-bottom: thin solid #e8e8e8;
             margin: 0px;
             padding-left: 7px;
-            
+
             h4,p {
                 padding: 0px;
                 margin: 0px;
             }
-            
+
             p {
                 padding-bottom: 3px;
             }
-            
+
         }
-        
+
         #group-item:hover {
-            background-color: #fccb85;  
+            background-color: #fccb85;
         }
     }
 }
 
 .calendar {
-    width: 1130px;
+    width: 75%;
     height: 700px;
     float: right;
     margin: 0px;
     padding: 0px;
-    
+
     .calendar-header {
         top: 0px;
         background-color: #557ab2;
@@ -142,7 +142,7 @@ body {
         border-top-left-radius: 7px;
         border-top-right-radius: 7px;
     }
-    
+
     .calendar-body {
         overflow: hidden;
         height: 600px;
@@ -176,7 +176,7 @@ body {
         text-decoration:none;
         text-shadow:0px 1px 0px #ffffff;
 }
-    
+
 #white-button:hover {
         background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f6f6f6), color-stop(1, #ffffff));
         background:-moz-linear-gradient(top, #f6f6f6 5%, #ffffff 100%);
@@ -187,7 +187,7 @@ body {
         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f6f6f6', endColorstr='#ffffff',GradientType=0);
         background-color:#f6f6f6;
 }
-    
+
 #white-button:active {
         position:relative;
         top:1px;
