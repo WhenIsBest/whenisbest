@@ -53,45 +53,6 @@ In order to receive the most recent updates to the simple_calendar code, one sho
 This repository was forked from an open source Ruby gem named "simple_calendar" on GitHub that provided us with our calendar functionality. Modifications were made to the gem in order to best fit the calendar into whenisbest.
 
 ## How to run whenisbest in your local server
-Also in whenisbest/documentation/documentation.md
-
-whenisbest uses [Ruby on rails](http://rubyonrails.org/) which includes HTML, CSS/SASS, JavaScript/CoffeeScript for the front-end.
-We've used this ruby on rails [tutorial](http://guides.rubyonrails.org/getting_started.html) to get started. If you've never used ruby on rails before and would like to try out the whenisbest source code this tutorial should provide the how-tos for all the installations you need. 
-
-Once you have ruby on rails set up, you should be able to start the server by running
-
-```
-$ bin/rails server
-```
-or for windows:
-
-```
-ruby bin\rails server
-```
-in your local repo folder and go to localhost:3000 on your webrowser to use whenisbest. If you want to edit the source code, you should be able to use just any code text editor.
-
-You should be greeted by this page when you run whenisbest:
-![screenshot 193](https://cloud.githubusercontent.com/assets/16448052/23838060/dfd5ca64-0767-11e7-8f8f-95b60c516a86.png) 
-
-If you cannot see the front end for some reason, these instructions may work:
-
-First check to see if your app/views/layouts/application.html.erb has this:
-```
-    <%= stylesheet_link_tag    'default', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'default', 'data-turbolinks-track': 'reload' %>
-```
-if so, change the lines to this:
-```
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-```
-If that still doesn't work, follow these instructions:
-    1. Go to the whenisbest directory and open Gemfile in a text editor.
-    2. Add "gem 'coffee-script-source', '1.8.0'" to Gemfile and save.
-    3. Open your terminal and navigate to the whenisbest directory
-    4. Type 'bundle update coffee-script-source' and press ENTER.
-    5. Close your terminal and open a new one.
-    6. Start the server.
-Source: http://stackoverflow.com/questions/28312460/object-doesnt-support-this-property-or-method-rails-windows-64bit
+Complete installation guidelines as well as contribution guidelines are in our [Wiki](https://github.com/WhenIsBest/whenisbest/wiki) page!
 
 WhenIsBest is a project within RCOS (Rensselaer Center for Open Source) at Renssealer Polytechnic Institute.
