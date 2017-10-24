@@ -12,7 +12,9 @@ class UsersController < ApplicationController
         @user.group_ids = Array.new
         if @user.save
           session[:user_id] = @user.id
-            redirect_to '/welcome/homepage'
+          flash[:notice] = 'Successfully Sign Up'
+          redirect_to '/welcome/homepage'
+
         else
           redirect_to '/signup'
         end

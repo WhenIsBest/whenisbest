@@ -2,9 +2,22 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
 body {
     font-family: sans-serif;
     background-color: #f7f7f7;
+}
+
+
+
+
+.notice {
+  background: #FFF6BF;
+  border-top: 2px solid #FFD324;
+  border-bottom: 2px solid #FFD324;
+  text-align: center;
+  margin: 10px auto;
+  padding: 5px 20px;
 }
 
 .header {
