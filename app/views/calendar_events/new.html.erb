@@ -1,5 +1,5 @@
 <body>
-  
+
     <%= render "welcome/header" %>
     
     <div class="create-event">
@@ -9,26 +9,25 @@
             <% else %>
                 Create a new event
             <% end %></h3>
-            
+
         </div>
-        
+
         <div class="event-body">
-            
-            <p>
+
             <% if params[:format] %>
 <!--              <% @slots = ["1", "2"] %>-->
 <!--              <%= render 'calendar_events/form_group', :@slot_list => TimeSlotsList.new, :@slot_lists =>  TimeSlotsList.all %>-->
 <!--              <%= render "calendar_events/slots", :locals => {:@time_slots => "1"} %>-->
 <!--              <%= render 'time_slots_lists/index' %>-->
-             
+
               <button id="white-button"><%= link_to 'Cancel', group_path(params[:format]) %></button></p>
             <% else %>
 
-              <%= render 'form' %> 
+              <%= render 'form' %>
               <button id="white-button"><%= link_to 'Cancel', welcome_homepage_path %></button></p>
             <% end %>
-            
-            
+
+
         </div>
     </div>
 

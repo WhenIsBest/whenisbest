@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-    
+
     def index
       @events = Event.all
     end
@@ -11,11 +11,11 @@ class EventsController < ApplicationController
     def new
       @event = Event.new
     end
-    
+
     def edit
       @event = Event.find(params[:id])
     end
-    
+
     def create
       @event = Event.new(event_params)
 
@@ -25,7 +25,7 @@ class EventsController < ApplicationController
         render 'new'
       end
     end
-    
+
     def update
       @event = Event.find(params[:id])
       params[:host] = current_user
@@ -36,7 +36,7 @@ class EventsController < ApplicationController
         render 'edit'
       end
     end
-    
+
     def destroy
       @event = Event.find(params[:id])
       @event.destroy

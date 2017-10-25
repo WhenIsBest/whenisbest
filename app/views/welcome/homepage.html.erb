@@ -1,5 +1,5 @@
 <body>
-    
+
     
     <div class="header">
         <div id="left">
@@ -9,24 +9,24 @@
         </div>
         <div id="update">
             <p>
-                
+
                 <% if current_user.group_ids == nil %>
                   <i>UPDATE AVAILABLE. Please refresh the page. </i>
-                  
+
                   <% group_ids = [] %>
 
                   <% @groups.each do |group| %>
-                    <% group.group_members.each do |member| %>       
+                    <% group.group_members.each do |member| %>
                       <% if member.id == current_user.id %>
                         <% group_ids << group.id %>
                       <% end %>
-                
-                      
+
+
                     <% end %>
                   <% end %>
                   <% current_user.group_ids = group_ids %>
                 <% end %>
-                
+
                 <% current_user.save! %>
             </p>
         </div>
@@ -34,11 +34,11 @@
             <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
         </div>
     </div>
-    
-    
+
+
     <div class="content">
-        
-        
+
+
         <div class="sidebar">
 
             <div class="groups">
@@ -55,10 +55,10 @@
                 <%= current_user.group_ids %>
                 <% group_ids = current_user.group_ids.remove("[").remove("]").split(",") %>
               <% end %>
-            
+
               <% group_ids.each do |group_id| %>
                   <div id="group-item">
-                    
+
                     <% if group_id %>
                         <% group = Group.where(:id => group_id).first %>
                         <% if group %>
@@ -74,24 +74,24 @@
 
         </div>
 
-        
-        
+
+
         <div class="calendar">
-            
+
             <div class="calendar-header">
                 <h3>Your calendar</h3>
                 <button id="white-button"><%= link_to 'Add to calendar', new_calendar_event_path %></button>
             </div>
-            
+
             <div class="calendar-body">
                 <%= week_calendar do |date| %>
                 <center><%= date.strftime("%b %d") %></center>
                 <% end %>
             </div>
-            
+
         </div>
-    
-        
+
+
     </div>
-    
+
 </body>

@@ -4,7 +4,7 @@
 <p>
   <strong>Date:</strong>
   <% if @calendar_event.day == nil %>
-    <%= @calendar_event.date %> 
+    <%= @calendar_event.date %>
   <% else %>
     <%= @calendar_event.month %> <%= @calendar_event.day %>, <%= @calendar_event.year %>
   <% end %>

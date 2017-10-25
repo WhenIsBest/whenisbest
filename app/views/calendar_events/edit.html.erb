@@ -1,8 +1,9 @@
 <body>
-    
+
     <%= render "welcome/header" %>
 
     <div class="edit-event">
+      <%=@calendar_event.duration%>
         <div class="event-header">
             <h3>Edit Event</h3>
             <button id="white-button">
@@ -14,10 +15,10 @@
             </button>
             <button id="white-button"><%= link_to "Delete", @calendar_event, method: :delete, data: { confirm: 'Are you certain you want to delete this?' } %></button>
         </div>
-        
+
         <div class="event-body">
             <%= render 'form2' %>
         </div>
-    
+
     </div>
 </body>
