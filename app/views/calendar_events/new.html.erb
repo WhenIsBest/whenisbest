@@ -1,7 +1,19 @@
 <body>
 
     <%= render "welcome/header" %>
-    
+
+    <% if @calendar_event.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@calendar_event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+        <ul>
+        <% @calendar_event.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
     <div class="create-event">
         <div class="event-header">
             <h3><% if params[:format] %>
