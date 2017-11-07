@@ -1,10 +1,16 @@
 <div class="header">
     <div id="left">
         <h1>WhenIsBest</h1>
-        <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
-        <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', root_path %>.</p>
-    </div>
-    <div id="right">
-        <button id="white-button"><%= link_to 'Settings', edit_user_path(current_user) %></button>
+        <% if current_user %>
+          <i><p id="greeting">Hi <%= current_user.first_name %>!</p></i>
+        <p id="logout">Not <%= current_user.first_name %>? Click <%= link_to 'here', logout_path %>.</p>
+
+        <% else %>
+          <% current_user = User.new %>
+          <% current_user.first_name = "Guest" %>
+          <% current_user.save!(:validate => false) %>
+          <i><p id="greeting">Hi Guest!</p></i>
+        <p id="logout">Looking to sign in? Click <%= link_to 'here', logout_path %>.</p>
+        <% end %>
     </div>
 </div>

@@ -17,8 +17,7 @@
             <%=form_for(:session, url: login_path) do |f| %>
             <p><%= f.email_field :email, :placeholder => "Email" %></p>
             <p> <%= f.password_field :password, :placeholder => "Password" %></p>
-           
-            
+            <%= hidden_field_tag 'logged_in', 1 %>
             
             <p><%= f.submit "Log in", class: "btn-submit" %>
                 
