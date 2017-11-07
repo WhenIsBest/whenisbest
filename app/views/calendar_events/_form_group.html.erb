@@ -2,7 +2,7 @@
 <% require 'months_conversion_helper.rb' %>
 
 <%= form_for @calendar_event, remote: true do |f| %>
- 
+
   <% if @calendar_event.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -16,7 +16,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <div id="name"> <%= f.label "Name of event:" %><br>
       <%= f.text_field :name %>
   </div>
@@ -32,17 +32,17 @@
     <%= f.date_select :date, :default => Time.now%>
   </div>
 <p></p>
-    
+
 <div id="duration">
   <p>
     <%= f.label "Duration:" %><br>
-    <%= f.select :duration, ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"] %> hours<br> 
+    <%= f.select :duration, ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24"] %> hours<br>
   </p>
 </div>
 
 <% group_id = params["format"] %>
 <% group = Group.find(group_id) %>
-<% events = get_group_events(group) %> 
+<% events = get_group_events(group) %>
 
 <div id="time_slots">
 
@@ -92,7 +92,7 @@
       </div>
     </div>
   <% end %>
-  
+
 </div>
 
 <!--<a href="javascript:;" id="printTimeSlots">Give Me Time Slots!</a>-->

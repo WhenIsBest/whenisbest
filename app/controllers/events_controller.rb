@@ -1,5 +1,7 @@
+# General Events Class
+
 class EventsController < ApplicationController
-    
+
     def index
       @events = Event.all
     end
@@ -11,11 +13,11 @@ class EventsController < ApplicationController
     def new
       @event = Event.new
     end
-    
+
     def edit
       @event = Event.find(params[:id])
     end
-    
+
     def create
       @event = Event.new(event_params)
 
@@ -25,7 +27,7 @@ class EventsController < ApplicationController
         render 'new'
       end
     end
-    
+
     def update
       @event = Event.find(params[:id])
       params[:host] = current_user
@@ -36,16 +38,16 @@ class EventsController < ApplicationController
         render 'edit'
       end
     end
-    
+
     def destroy
       @event = Event.find(params[:id])
       @event.destroy
 
       redirect_to events_path
     end
-
+    
     private
       def event_params
-        params.require(:event).permit(:start_time, :hours, :minutes, :meridiem, :name, :date)
+        params.require(:event).permit(:start_time, :hours, :minutes, :meridiem, :name, :date, :priority)
       end
 end

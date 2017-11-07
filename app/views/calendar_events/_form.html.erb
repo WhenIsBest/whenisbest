@@ -1,5 +1,5 @@
 <%= form_for @calendar_event do |f| %>
- 
+
   <% if @calendar_event.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -13,16 +13,17 @@
       </ul>
     </div>
   <% end %>
-  
-  <p> <%= f.label "Name of event:" %><br>
-      <%= f.text_field :name %>
+
+  <p>
+    <%= f.label "Name of event:" %><br>
+    <%= f.text_field :name %>
   </p>
 
   <p>
-      <%= f.label "Date:" %><br>
-      <%= f.date_select :date, :default => Time.now%>
+    <%= f.label "Date:" %><br>
+    <%= f.date_select :date, :default => Time.now%>
   </p>
- 
+
   <p>
     <%= f.label "Start Time:"%><br>
     <%= f.select :hour, ['12','1','2','3','4','5','6','7','8','9','10','11'] %>
@@ -49,5 +50,5 @@
   <p>
     <%= f.submit "Create Event"%>
   </p>
- 
+
 <% end %>

@@ -1,58 +1,66 @@
+<!-- Directory: http://localhost:3000/time_slots_lists?group=3 -->
 <div id="header">
   <%= render "welcome/header" %>
 </div>
+
 <div class="container">
 
 <br>
 <br> <!-- Sorry, I'm #TeamBackend -->
 <br>
 <br>
-  
+
 <!-- Button trigger modal -->
 <div class="row" id="get_slots_button">
   <div class="text-center">
+    <!-- "Get Time Slots!" button -->
     <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
       Get Time Slots!
     </button>
-    <button id="white-button"><%= link_to 'Cancel', group_path(@group) %></button>
+    <!-- "Cancel" button -->
+    <button id="white-button">
+      <%= link_to 'Cancel', group_path(@group) %>
+    </button>
   </div>
 </div>
 
 <br>
 <br>
-  
-<div class="calendar" id="calendar">
-            
-    <div class="calendar-header">
+
+<!-- Actual Calendar -->
+<div class="calendar-time-slots">
+
+    <div class="calendar-time-slots-header">
         <h3>
           <% group_name = Group.find(@group).name %>
-          <%= group_name %>'s Calendar 
+          <%= group_name %>'s Calendar
         </h3>
     </div>
 
-    <div class="calendar-body">
+    <div class="calendar-time-slots-body">
         <%= week_calendar do |date| %>
         <center><%= date.strftime("%b %d") %></center>
         <% end %>
     </div>
 
 </div>
-  
+
+<!-- Available time slots -->
 <div class="row" id="container_time_slots_list">
   <%= render TimeSlotsList.all %>
 </div>
-  
-<!-- Modal -->
+
+<!-- Modal (Pop-up from "Get Timeslots!" button)-->
 <%= form_for @time_slots_list, remote: true do |f| %>
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        
+
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="myModalLabel">Time Slots</h4>
         </div>
-                
+
         <div class="modal-body">
           <div class="field">
             <%= f.label :event_name %><br>
@@ -78,17 +86,14 @@
             <%= f.hidden_field :group, :value => @group %>
           </div>
         </div>
-        
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <%= submit_tag "Create", class: "btn btn-primary" %>
         </div>
       </div>
-      
     </div>
   </div>
-<% end %>  
+<% end %>
 
-  
 </div>
-

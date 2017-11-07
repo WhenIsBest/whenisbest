@@ -9,3 +9,29 @@ header {
 .container {
   z-index: -1;
 }
+
+.calendar-time-slots {
+    width: 66%;
+    height: 700px;
+    float: right;
+    margin: 0px;
+    padding: 0px;
+
+    .calendar-time-slots-header {
+        top: 0px;
+        background-color: #557ab2;
+        color: white;
+        padding: 7px;
+        padding-top: 3px;
+        padding-right: 0px;
+        box-shadow: 1px 0px 1px #888888;
+        border-top-left-radius: 7px;
+        border-top-right-radius: 7px;
+    }
+
+    .calendar-time-slots-body {
+        overflow: hidden;
+        height: 600px;
+        background-color: white;
+    }
+}

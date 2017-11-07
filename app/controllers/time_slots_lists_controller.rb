@@ -1,7 +1,7 @@
 class TimeSlotsListsController < ApplicationController
   before_action :set_time_slots_list, only: [:show, :edit, :update, :destroy, :index]
-  
-  
+
+
 
   # GET /time_slots_lists
   # GET /time_slots_lists.json
