@@ -68,4 +68,15 @@ class CalendarEvent < ApplicationRecord
     def years
         @@years
     end
+
+    def valid_time(calendar_event)
+      # abort(calendar_event.duration.to_i.to_s)
+      if calendar_event.duration.to_i <= 0
+        abort("helo")
+        # calendar_event.errors[:base] << "Event ends before it starts"
+        false
+      end
+      true
+    end
+
 end

@@ -1,25 +1,25 @@
 Rails.application.routes.draw do
-    
+
   resources :time_slots_lists
   resource :statics, :only => [:show, :new, :create]
 
   get 'calendar/show'
   resource :calendar, only: [:show], controller: :calendar
   #root to: "calendar#show"
-    
+
   get 'calendar_events/group_new'
   get 'pages/new'
 
   resources :groups
   resources :events
   resources :calendar_events
-  resources :users  
+  resources :users
   resources :pages
-    
+
   get 'onboarding/new'
 
   get 'sessions/new'
-    
+
   get 'welcome/homepage'
   #get 'users/all_events'
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-    
+
   root 'onboarding#new'
-    
+
 end

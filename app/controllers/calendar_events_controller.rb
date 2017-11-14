@@ -90,6 +90,8 @@ class CalendarEventsController < ApplicationController
       if @calendar_event.update(calendar_event_params)
           if @calendar_event.group
             redirect_to group_path(@calendar_event.group)
+          # elsif calendar_event_params[:star]
+            # render 'edit', :flash => { :notice => "You done messed up"}
           else
             redirect_to '/welcome/homepage'
           end
