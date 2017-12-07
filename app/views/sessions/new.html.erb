@@ -1,13 +1,13 @@
 <html>
-<body> 
+<body>
     <div class="header">
         <div class="center">
             <div class="login_header">
-                <h1 id="header_color">Login</h1> 
+                <h1 id="header_color">Login</h1>
             </div>
-            
+
         </div>
-           
+
     </div>
     <div class="login_content">
         <div class="center">
@@ -17,20 +17,19 @@
             <%=form_for(:session, url: login_path) do |f| %>
             <p><%= f.email_field :email, :placeholder => "Email" %></p>
             <p> <%= f.password_field :password, :placeholder => "Password" %></p>
-           
-            
-            
-            <p><%= f.submit "Log in", class: "btn-submit" %>
-                
+
+
+
+            <p><%= f.submit "Log in", class: "button" %>
+
             </p>
             <p>
                 <%= link_to 'New User?', signup_path %>
             </p>
             <% end %>
-            
-        </div>  
+
+        </div>
     </div>
 </body>
 </html>
-
 
