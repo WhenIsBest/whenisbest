@@ -3,8 +3,14 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-    $("#addNewMember").on "click", ->
-        $("#member_choices").append($("#new_member_form").html())
+    $(document).ready(function(){
+              
+$("#addNewMember").on('click', function(){
+                
+$("#member_choices").append($("#new_member_form").html());
+ });
+
+});
  
     
 @removeMember = (element) ->
