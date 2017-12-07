@@ -66,10 +66,10 @@
             <% end %>
           <% end %>
 
+          <%= events.length %> <br></br>
+
           <!-- get the available hours and the duration specified -->
           <% time_range = get_time_range(events) %>
-
-
 
           <% hour_set = time_range.to_set %>
           <% duration = time_slots_list.duration %>
@@ -122,21 +122,29 @@
 
                 <% event_list = [] %>
                 <% if conflict %>
-                  <% event_list = event_list + conflict.to_a %>
+                  <% event_list = events + conflict.to_a %>
                 <% end %>
                 <% if conflict_alt %>
-                  <% event_list = event_list + conflict_alt.to_a %>
+                  <% event_list = events + conflict_alt.to_a %>
                 <% end %>
-
                 <% event_list.each do |event| %>
                   <% start_hour = event.hour.to_i %>
                   <% end_hour = event.end_hour.to_i %>
-                  <%= subset.to_a %>
                   <% if subset.include?(start_hour) %>
                     <% if time_slots_list.priority.to_i < event.priority.to_i %>
-                      <% for k in 0..event.duration.to_i %>
-                        <% pair = [i,j+k,"priority"] %>
-                        <% time_slots.push(pair) %>
+                      <% for l in 0..event.duration.to_i-1 %>
+                        <% if event.meridiem == "AM" %>
+                          <% start_time = event.start_time.to_i - 12 %>
+                        <% end %>
+                        <%= start_time %>
+                        <% pair = [i,start_time + l,"priority"] %>
+
+                        <% for index in 0..time_slots.length-1 %>
+                          <% if pair[1] < time_slots[index][1] %>
+                            <% time_slots.insert(index, pair) %>
+                            <% break %>
+                          <% end %>
+                        <% end %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -145,6 +153,11 @@
             <% end %>
           <% end %>
         <% end %>
+
+        <!-- put all stuffs in time_slots -->
+
+        <%= time_slots.to_a %>
+
 
         <% time_slots.each do |slot| %>
           <% month = get_month(time_slots_list.start_date.prev_day.month.to_s).to_i %>
@@ -165,6 +178,7 @@
           <% if slot[2] == "time" %>
             <div style="color: #3B82D6;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => date_start, :month => month, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(hour_end).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(hour_end), :duration => duration, :priority => time_slots_list.priority.to_i }) %><p></p></div>
           <% elsif slot[2] == "priority" %>
+            <%= slot[1] %>
             <div style="color: #c4c4c4;"><%= button_to button_name, calendar_events_path(:calendar_event => {:host => current_user.id.to_s, :group => group_id.to_s, :start_time => get_traditional(slot[1]), :hour => get_traditional(slot[1]).to_s, :minutes => "00", :meridiem => get_meridiem(slot[1]), :name => time_slots_list.event_name, :date => date_start, :month => month, :day => slot[0].to_s, :year => time_slots_list.start_date.year.to_s, :end_hour => get_traditional(hour_end).to_s, :end_minutes => "00", :end_meridiem => get_meridiem(hour_end), :duration => duration, :priority => time_slots_list.priority.to_i }) %><p></p></div>
           <% end %>
         <% end %>
