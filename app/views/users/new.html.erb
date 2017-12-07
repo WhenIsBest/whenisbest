@@ -1,20 +1,42 @@
-<div class="login">
-  <div class="container">
-    <div class="form">
-    <h1 class ="center">Sign up</h1>
+<html>
+<body>
+
+
+
+
+
+    <div class="header">
+        <div class="center">
+            <div class="login_header">
+                <h1 id="header_color">Sign up</h1>
+            </div>
+
+        </div>
     
     <div class ="center">
         <div>
              <img src="https://raw.githubusercontent.com/WhenIsBest/whenisbest/master/rsz_whenisbest_-_logo.png" />
         </div>
         <%= form_for(@user) do |f| %>
-         <p> <%= f.text_field :first_name, :placeholder => "First name" %></p>
-         <p> <%= f.text_field :last_name, :placeholder => "Last name" %></p>
+         <p> <%= f.text_field :first_name, :placeholder => "First name", :required => true%></p>
+         <p> <%= f.text_field :last_name, :placeholder => "Last name", :required => true %></p>
          <p>  <%= f.email_field :email, :placeholder => "Email" %></p>
-         <p> <%= f.password_field :password, :placeholder => "Password" %></p>
+         <p> <%= f.password_field :password, :placeholder => "Password", :required => true%></p>
          <p> <%= f.time_zone_select :time_zone, nil, {:include_blank => false} %></p>
-             <p><%= f.submit "Create an account", class: "button" %></p>
+
+            <div class="button-div"><p><%= f.submit "Create an account", class: "btn-submit" ,:class => "button"%></p></div>
         <% end %>
     </div>
   </div>
-</div>
+</d
+
+<%- flash.each do |name, message| %>
+<p><i><%= "#{name}: #{message}" %></i></p>
+<% end %>
+
+<%= yield %>
+
+
+</body>
+</html>iv>
+

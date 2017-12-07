@@ -1,5 +1,8 @@
 <html>
 <body>
+
+    <p class="notice"><%= flash[:notice] %></p>
+
     <div class="header">
         <div class="center">
             <div class="login_header">
@@ -11,20 +14,21 @@
     </div>
     <div class="login_content">
         <div class="center">
-            <div>
+            <div class="pic">
              <img src="https://raw.githubusercontent.com/WhenIsBest/whenisbest/master/rsz_whenisbest_-_logo.png" />
             </div>
             <%=form_for(:session, url: login_path) do |f| %>
             <p><%= f.email_field :email, :placeholder => "Email" %></p>
             <p> <%= f.password_field :password, :placeholder => "Password" %></p>
 
+           
+            
+            <div class= "button-div2">
+            <p><%= f.submit "Log in", class: "btn-submit" , :class => "button"%>
+            </div> </p>
 
-
-            <p><%= f.submit "Log in", class: "button" %>
-
-            </p>
             <p>
-                <%= link_to 'New User?', signup_path %>
+                <div class="form"><%= link_to 'New User?', signup_path %></div>
             </p>
             <% end %>
 

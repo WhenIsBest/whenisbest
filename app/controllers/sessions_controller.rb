@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
           session[:user_id] = user.id
           redirect_to '/welcome/homepage'
       else
-          redirect_to '/login', notice: "Invalid username or password"
+          redirect_to '/login', :flash => { :notice => "Invalid username or password" }
       end
   end
     
