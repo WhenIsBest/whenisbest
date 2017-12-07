@@ -59,7 +59,24 @@
 
               </p>
 
-              <a href="javascript:;" id="addNewMember">Add New Member</a>
+                <script>
+              $(document).ready(function(){
+            $("#addNewMember").on('click', function(){
+              $("#member_choices").append($("#new_member_form").html());
+
+             });
+
+            });
+
+             </script>
+
+             <a href="javascript:;" id="addNewMember">Add New Member</a>
+
+
+              <div style="display: none;" id="new_member_form">
+                  <%= render partial: "member_choice", locals: {group: false} %>
+              </div>
+
 
               <p>
                 <%= f.submit %>
@@ -67,10 +84,8 @@
 
         <% end %>
 
-            <div style="display: none;" id="new_member_form">
-                <%= render partial: "member_choice", locals: {group: false} %>
-            </div>
-    
+
+
     </div>
-    
+
 </div>
